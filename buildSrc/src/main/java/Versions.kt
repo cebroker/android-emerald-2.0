@@ -1,5 +1,5 @@
 object Versions {
-    const val gradlePlugin = "7.0.0-beta05"
+    const val gradlePlugin = "7.0.0-rc01"
     const val kotlin = "1.5.10"
     const val coreKtx = "1.6.0"
     const val compose = "1.0.0-rc02"

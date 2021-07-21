@@ -1,4 +1,4 @@
-package co.condorlabs.emeraldcomponents
+package co.condorlabs.emerald
 
 import org.junit.Test
 
