@@ -6,12 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import co.condorlabs.emerald.theme.EmeraldColors.labelColor
-import co.condorlabs.emerald.theme.EmeraldColors.primaryColor
-import co.condorlabs.emerald.theme.EmeraldColors.subtitleColor
-import co.condorlabs.emerald.theme.EmeraldColors.textColor
+import co.condorlabs.emerald.theme.EmeraldColors
 import co.condorlabs.emerald.theme.EmeraldTheme
-import co.condorlabs.emerald.theme.typography
+import co.condorlabs.emerald.theme.EmeraldTypography
 
 @Preview(showBackground = true)
 @Composable
@@ -46,16 +43,16 @@ sealed class EmeraldTextStyle(
     private val colorText: Color
 ) {
 
-    object H1Title : EmeraldTextStyle(typography.h1, textColor)
-    object H2Title : EmeraldTextStyle(typography.h2, textColor)
-    object H3Title : EmeraldTextStyle(typography.h3, textColor)
-    object Title : EmeraldTextStyle(typography.h4, textColor)
-    object SectionTitle : EmeraldTextStyle(typography.h5, textColor)
-    object SubTitle : EmeraldTextStyle(typography.subtitle1, subtitleColor)
-    object Body : EmeraldTextStyle(typography.body1, labelColor)
-    object SectionBody : EmeraldTextStyle(typography.body1, textColor)
-    object Link : EmeraldTextStyle(typography.body2, primaryColor)
-    object BodySmall : EmeraldTextStyle(typography.caption, subtitleColor)
+    object H1Title : EmeraldTextStyle(EmeraldTypography.textTypography.h1, EmeraldColors.textColor)
+    object H2Title : EmeraldTextStyle(EmeraldTypography.textTypography.h2, EmeraldColors.textColor)
+    object H3Title : EmeraldTextStyle(EmeraldTypography.textTypography.h3, EmeraldColors.textColor)
+    object Title : EmeraldTextStyle(EmeraldTypography.textTypography.h4, EmeraldColors.textColor)
+    object SectionTitle : EmeraldTextStyle(EmeraldTypography.textTypography.h5, EmeraldColors.textColor)
+    object SubTitle : EmeraldTextStyle(EmeraldTypography.textTypography.subtitle1, EmeraldColors.subtitleColor)
+    object Body : EmeraldTextStyle(EmeraldTypography.textTypography.body1, EmeraldColors.labelColor)
+    object SectionBody : EmeraldTextStyle(EmeraldTypography.textTypography.body1, EmeraldColors.textColor)
+    object Link : EmeraldTextStyle(EmeraldTypography.textTypography.body2, EmeraldColors.primaryColor)
+    object BodySmall : EmeraldTextStyle(EmeraldTypography.textTypography.caption, EmeraldColors.subtitleColor)
 
     fun getColorText(): Color {
         return colorText
