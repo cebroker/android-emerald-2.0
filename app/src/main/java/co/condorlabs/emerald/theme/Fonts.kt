@@ -7,7 +7,7 @@ import co.condorlabs.emerald.R
 
 object Fonts {
     val openSans = FontFamily(
-        Font(R.font.open_sans),
-        Font(R.font.open_sans_semibold, FontWeight.SemiBold),
+        Font(R.font.open_sans_regular, FontWeight.Normal),
+        Font(R.font.open_sans_semi_bold, FontWeight.SemiBold),
     )
 }
