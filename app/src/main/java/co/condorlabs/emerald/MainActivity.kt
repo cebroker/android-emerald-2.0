@@ -15,6 +15,9 @@ import co.condorlabs.emerald.components.text.EmeraldText
 import co.condorlabs.emerald.components.text.EmeraldTextStyle
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
+import co.condorlabs.emerald.components.button.EmeraldButtonState
+import co.condorlabs.emerald.components.button.EmeraldButton
+import co.condorlabs.emerald.components.button.EmeraldButtonStyle
 import co.condorlabs.emerald.theme.EmeraldTheme
 
 /**
@@ -31,6 +34,20 @@ class MainActivity : AppCompatActivity() {
                 Column(Modifier.padding(horizontal = 20.dp)) {
                     TextSample()
                     TextFieldSample()
+                    EmeraldButton(
+                        text = "Primary Button",
+                        emeraldButtonStyle = EmeraldButtonStyle.EmeraldPrimaryButton,
+                        emeraldButtonState = EmeraldButtonState.Loading
+                    ) {}
+                    EmeraldButton(
+                        text = "Success Button",
+                        emeraldButtonStyle = EmeraldButtonStyle.EmeraldSuccessButton
+                    ) {}
+
+                    EmeraldButton(
+                        text = "Danger Button",
+                        emeraldButtonStyle = EmeraldButtonStyle.EmeraldDangerButton
+                    ) {}
                 }
             }
         }
