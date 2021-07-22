@@ -1,4 +1,4 @@
-package co.condorlabs.emerald.components.custombutton
+package co.condorlabs.emerald.components.button
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.ui.graphics.Color

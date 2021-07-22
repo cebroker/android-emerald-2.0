@@ -1,4 +1,4 @@
-package co.condorlabs.emerald.theme
+package co.condorlabs.emerald.components.utils
 
 import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material.ripple.RippleTheme
