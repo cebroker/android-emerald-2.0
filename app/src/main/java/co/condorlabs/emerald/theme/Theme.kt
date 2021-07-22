@@ -28,7 +28,7 @@ fun EmeraldTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composabl
 
     MaterialTheme(
         colors = colors,
-        typography = typography,
+        typography = EmeraldTypography.textTypography,
         content = content
     )
 }

@@ -3,15 +3,21 @@ package co.condorlabs.emerald.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import co.condorlabs.emerald.theme.EmeraldColors.labelColor
-import co.condorlabs.emerald.theme.EmeraldColors.primaryColor
-import co.condorlabs.emerald.theme.EmeraldColors.subtitleColor
-import co.condorlabs.emerald.theme.EmeraldColors.textColor
+import androidx.compose.ui.unit.TextUnit
+import co.condorlabs.emerald.theme.EmeraldColors
 import co.condorlabs.emerald.theme.EmeraldTheme
-import co.condorlabs.emerald.theme.typography
+import co.condorlabs.emerald.theme.EmeraldTypography
 
 @Preview(showBackground = true)
 @Composable
@@ -33,11 +39,40 @@ fun PreviewEmeraldText() {
 }
 
 @Composable
-fun EmeraldText(text: String, style: EmeraldTextStyle) {
+fun EmeraldText(
+    text: String,
+    style: EmeraldTextStyle,
+    modifier: Modifier = Modifier,
+    fontSize: TextUnit = TextUnit.Unspecified,
+    fontStyle: FontStyle? = null,
+    fontWeight: FontWeight? = null,
+    fontFamily: FontFamily? = null,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    textAlign: TextAlign? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+) {
     Text(
         text = text,
         style = style.getTextStyle(),
         color = style.getColorText(),
+        modifier = modifier,
+        fontSize = fontSize,
+        fontStyle = fontStyle,
+        fontWeight = fontWeight,
+        fontFamily = fontFamily,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        textAlign = textAlign,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout,
     )
 }
 
@@ -46,16 +81,16 @@ sealed class EmeraldTextStyle(
     private val colorText: Color
 ) {
 
-    object H1Title : EmeraldTextStyle(typography.h1, textColor)
-    object H2Title : EmeraldTextStyle(typography.h2, textColor)
-    object H3Title : EmeraldTextStyle(typography.h3, textColor)
-    object Title : EmeraldTextStyle(typography.h4, textColor)
-    object SectionTitle : EmeraldTextStyle(typography.h5, textColor)
-    object SubTitle : EmeraldTextStyle(typography.subtitle1, subtitleColor)
-    object Body : EmeraldTextStyle(typography.body1, labelColor)
-    object SectionBody : EmeraldTextStyle(typography.body1, textColor)
-    object Link : EmeraldTextStyle(typography.body2, primaryColor)
-    object BodySmall : EmeraldTextStyle(typography.caption, subtitleColor)
+    object H1Title : EmeraldTextStyle(EmeraldTypography.textTypography.h1, EmeraldColors.textColor)
+    object H2Title : EmeraldTextStyle(EmeraldTypography.textTypography.h2, EmeraldColors.textColor)
+    object H3Title : EmeraldTextStyle(EmeraldTypography.textTypography.h3, EmeraldColors.textColor)
+    object Title : EmeraldTextStyle(EmeraldTypography.textTypography.h4, EmeraldColors.textColor)
+    object SectionTitle : EmeraldTextStyle(EmeraldTypography.textTypography.h5, EmeraldColors.textColor)
+    object SubTitle : EmeraldTextStyle(EmeraldTypography.textTypography.subtitle1, EmeraldColors.subtitleColor)
+    object Body : EmeraldTextStyle(EmeraldTypography.textTypography.body1, EmeraldColors.labelColor)
+    object SectionBody : EmeraldTextStyle(EmeraldTypography.textTypography.body1, EmeraldColors.textColor)
+    object Link : EmeraldTextStyle(EmeraldTypography.textTypography.body2, EmeraldColors.primaryColor)
+    object BodySmall : EmeraldTextStyle(EmeraldTypography.textTypography.caption, EmeraldColors.subtitleColor)
 
     fun getColorText(): Color {
         return colorText
