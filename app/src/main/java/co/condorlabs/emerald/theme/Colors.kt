@@ -11,6 +11,7 @@ object EmeraldColors {
     val subtitleColor = Color(0xFF607B7B)
     val labelColor = Color(0xFF4B5353)
     val primaryColor = Color(0xFF0073E9)
+    val errorColor = Color(0xFFDE350B)
 
     val primaryRippleColor = Color(0xFF005AB6)
     val defaultRippleColor = Color(0xFFE6E6E6)
