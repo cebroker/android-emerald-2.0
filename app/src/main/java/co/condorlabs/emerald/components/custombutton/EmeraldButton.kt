@@ -1,9 +1,15 @@
 package co.condorlabs.emerald.components.custombutton
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.ButtonElevation
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -14,8 +20,8 @@ import co.condorlabs.emerald.theme.RippleColorTheme
 
 @Composable
 fun EmeraldButton(
-    text: String,
-    emeraldButtonType: String,
+    text: String = "",
+    emeraldButtonType: String = BUTTON_PRIMARY_TYPE,
     buttonState: ButtonState = ButtonState.Normal,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -50,10 +56,12 @@ fun EmeraldButton(
                     )
                 }
                 ButtonState.Loading -> {
-                    CircularProgressIndicator(
-                        modifier = Modifier.wrapContentHeight(),
-                        color = emeraldButtonStyle.textColor,
-                    )
+                    Box(modifier = Modifier.fillMaxHeight()) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.fillMaxHeight(),
+                            color = emeraldButtonStyle.textColor,
+                        )
+                    }
                 }
             }
         }
