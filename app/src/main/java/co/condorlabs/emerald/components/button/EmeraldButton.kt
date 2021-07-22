@@ -1,28 +1,22 @@
-package co.condorlabs.emerald.components.custombutton
+package co.condorlabs.emerald.components.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.ButtonElevation
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material.*
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import co.condorlabs.emerald.theme.RippleColorTheme
+import co.condorlabs.emerald.components.utils.RippleColorTheme
 
 @Composable
 fun EmeraldButton(
-    text: String = "",
-    emeraldButtonType: String = BUTTON_PRIMARY_TYPE,
-    buttonState: ButtonState = ButtonState.Normal,
+    text: String,
+    emeraldButtonStyle: EmeraldButtonStyle,
+    emeraldButtonState: EmeraldButtonState = EmeraldButtonState.Normal,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
@@ -31,9 +25,6 @@ fun EmeraldButton(
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     clickAction: () -> Unit
 ) {
-    val emeraldButtonStyle: EmeraldButtonStyle =
-        EmeraldButtonStyleFactory().getEmeraldButtonStyle(emeraldButtonType)
-
     CompositionLocalProvider(LocalRippleTheme provides RippleColorTheme(emeraldButtonStyle.rippleColor)) {
         Button(
             onClick = clickAction,
@@ -48,20 +39,19 @@ fun EmeraldButton(
             shape = shape,
             contentPadding = contentPadding
         ) {
-            when (buttonState) {
-                ButtonState.Normal -> {
+            when (emeraldButtonState) {
+                EmeraldButtonState.Normal -> {
                     Text(
+                        //TODO: The textStyle will be added later
                         text = text,
                         color = emeraldButtonStyle.textColor
                     )
                 }
-                ButtonState.Loading -> {
-                    Box(modifier = Modifier.fillMaxHeight()) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.fillMaxHeight(),
-                            color = emeraldButtonStyle.textColor,
-                        )
-                    }
+                EmeraldButtonState.Loading -> {
+                    CircularProgressIndicator(
+                        modifier = Modifier.wrapContentHeight(),
+                        color = emeraldButtonStyle.textColor,
+                    )
                 }
             }
         }

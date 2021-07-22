@@ -13,11 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.EmeraldText
 import co.condorlabs.emerald.components.EmeraldTextStyle
-import co.condorlabs.emerald.components.custombutton.BUTTON_PRIMARY_TYPE
-import co.condorlabs.emerald.components.custombutton.BUTTON_SUCCESS_TYPE
-import co.condorlabs.emerald.components.custombutton.BUTTON_DANGER_TYPE
-import co.condorlabs.emerald.components.custombutton.ButtonState
-import co.condorlabs.emerald.components.custombutton.EmeraldButton
+import co.condorlabs.emerald.components.button.EmeraldButtonState
+import co.condorlabs.emerald.components.button.EmeraldButton
+import co.condorlabs.emerald.components.button.EmeraldButtonStyle
 import co.condorlabs.emerald.theme.EmeraldTheme
 
 class MainActivity : AppCompatActivity() {
@@ -36,27 +34,27 @@ class MainActivity : AppCompatActivity() {
                     EmeraldText(text = "Section title", style = EmeraldTextStyle.SectionTitle)
                     EmeraldText(text = "Section body", style = EmeraldTextStyle.SectionBody)
                     EmeraldText(text = "Link", style = EmeraldTextStyle.Link)
-                    val currentButtonState: MutableState<ButtonState> = remember { mutableStateOf(ButtonState.Normal) }
+                    val currentButtonState: MutableState<EmeraldButtonState> = remember { mutableStateOf(EmeraldButtonState.Normal) }
                     EmeraldButton(
                         text = "Primary Button",
-                        emeraldButtonType = BUTTON_PRIMARY_TYPE,
+                        emeraldButtonStyle = EmeraldButtonStyle.EmeraldPrimaryButton,
                         modifier = Modifier.fillMaxWidth().height(40.dp),
-                        buttonState = currentButtonState.value
+                        emeraldButtonState = EmeraldButtonState.Loading
                     ) {
-                        if(currentButtonState.value is ButtonState.Normal) {
-                            currentButtonState.value = ButtonState.Loading
+                        if(currentButtonState.value is EmeraldButtonState.Normal) {
+                            currentButtonState.value = EmeraldButtonState.Loading
                         } else {
-                            currentButtonState.value = ButtonState.Normal
+                            currentButtonState.value = EmeraldButtonState.Normal
                         }
                     }
                     EmeraldButton(
                         text = "Success Button",
-                        emeraldButtonType = BUTTON_SUCCESS_TYPE
+                        emeraldButtonStyle = EmeraldButtonStyle.EmeraldSuccessButton
                     ) {}
 
                     EmeraldButton(
                         text = "Danger Button",
-                        emeraldButtonType = BUTTON_DANGER_TYPE
+                        emeraldButtonStyle = EmeraldButtonStyle.EmeraldDangerButton
                     ) {}
                 }
             }
