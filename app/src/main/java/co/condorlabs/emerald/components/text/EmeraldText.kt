@@ -1,6 +1,5 @@
 package co.condorlabs.emerald.components.text
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,28 +10,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
-import co.condorlabs.emerald.theme.EmeraldTheme
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewEmeraldText() {
-    EmeraldTheme {
-        Column {
-            EmeraldText(text = "h1 Title", style = EmeraldTextStyle.H1Title)
-            EmeraldText(text = "h2 Title", style = EmeraldTextStyle.H2Title)
-            EmeraldText(text = "h3 Title", style = EmeraldTextStyle.H3Title)
-            EmeraldText(text = "Title", style = EmeraldTextStyle.Title)
-            EmeraldText(text = "Subtitle", style = EmeraldTextStyle.SubTitle)
-            EmeraldText(text = "Body", style = EmeraldTextStyle.Body)
-            EmeraldText(text = "Small body", style = EmeraldTextStyle.BodySmall)
-            EmeraldText(text = "Section title", style = EmeraldTextStyle.SectionTitle)
-            EmeraldText(text = "Section body", style = EmeraldTextStyle.SectionBody)
-            EmeraldText(text = "Link", style = EmeraldTextStyle.Link)
-        }
-    }
-}
 
 @Composable
 fun EmeraldText(

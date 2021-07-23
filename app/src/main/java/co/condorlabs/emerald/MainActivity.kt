@@ -3,21 +3,28 @@ package co.condorlabs.emerald
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import co.condorlabs.emerald.components.button.EmeraldButton
+import co.condorlabs.emerald.components.button.EmeraldButtonState
+import co.condorlabs.emerald.components.button.EmeraldButtonStyle
 import co.condorlabs.emerald.components.text.EmeraldText
 import co.condorlabs.emerald.components.text.EmeraldTextStyle
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
-import co.condorlabs.emerald.components.button.EmeraldButtonState
-import co.condorlabs.emerald.components.button.EmeraldButton
-import co.condorlabs.emerald.components.button.EmeraldButtonStyle
 import co.condorlabs.emerald.theme.EmeraldTheme
 
 /**
@@ -31,7 +38,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             EmeraldTheme {
-                Column(Modifier.padding(horizontal = 20.dp)) {
+                val scrollState = rememberScrollState()
+                Column(
+                    Modifier
+                        .padding(horizontal = 20.dp)
+                        .fillMaxSize()
+                        .verticalScroll(scrollState)
+                ) {
                     TextSample()
                     TextFieldSample()
                     EmeraldButton(

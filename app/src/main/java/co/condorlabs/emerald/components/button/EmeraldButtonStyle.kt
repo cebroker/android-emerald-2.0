@@ -14,20 +14,20 @@ sealed class EmeraldButtonStyle(
     val highlightTextColor: Color = textColor
 ) {
     object EmeraldPrimaryButton: EmeraldButtonStyle(
-        backgroundColor = EmeraldColors.primaryColor,
+        backgroundColor = EmeraldColors.InfoColor,
         textColor = Color.White,
-        rippleColor = EmeraldColors.primaryRippleColor
+        rippleColor = EmeraldColors.PrimaryRippleColor
     )
 
     object EmeraldSuccessButton: EmeraldButtonStyle(
-        backgroundColor = EmeraldColors.successColor,
+        backgroundColor = EmeraldColors.SuccessColor,
         textColor = Color.White,
-        rippleColor = EmeraldColors.successRippleColor
+        rippleColor = EmeraldColors.SuccessRippleColor
     )
 
     object EmeraldDangerButton: EmeraldButtonStyle(
-        backgroundColor = EmeraldColors.dangerColor,
+        backgroundColor = EmeraldColors.DangerColor,
         textColor = Color.White,
-        rippleColor = EmeraldColors.dangerRippleColor
+        rippleColor = EmeraldColors.DangerRippleColor
     )
 }
