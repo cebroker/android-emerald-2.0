@@ -8,12 +8,12 @@ import co.condorlabs.emerald.theme.EmeraldColors
 @Composable
 fun emeraldTextFieldColors(): TextFieldColors {
     return TextFieldDefaults.outlinedTextFieldColors(
-        errorBorderColor = EmeraldColors.errorColor,
-        errorLabelColor = EmeraldColors.errorColor,
-        focusedLabelColor = EmeraldColors.primaryColor,
-        focusedBorderColor = EmeraldColors.primaryColor,
-        cursorColor = EmeraldColors.primaryColor,
-        unfocusedLabelColor = EmeraldColors.labelColor,
-        unfocusedBorderColor = EmeraldColors.labelColor,
+        errorBorderColor = EmeraldColors.DangerColor,
+        errorLabelColor = EmeraldColors.DangerColor,
+        focusedLabelColor = EmeraldColors.InfoColor,
+        focusedBorderColor = EmeraldColors.InfoColor,
+        cursorColor = EmeraldColors.InfoColor,
+        unfocusedLabelColor = EmeraldColors.LabelColor,
+        unfocusedBorderColor = EmeraldColors.LabelColor,
     )
 }

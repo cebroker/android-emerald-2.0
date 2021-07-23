@@ -8,16 +8,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
-    primary = EmeraldColors.colorPrimary,
-    primaryVariant = EmeraldColors.colorPrimaryDark,
-    secondary = EmeraldColors.colorAccent,
+    primary = EmeraldColors.ColorPrimary,
+    primaryVariant = EmeraldColors.ColorPrimaryDark,
+    secondary = EmeraldColors.ColorAccent,
     background = Color.White
 )
 
 private val LightColorPalette = lightColors(
-    primary = EmeraldColors.colorPrimary,
-    primaryVariant = EmeraldColors.colorPrimaryDark,
-    secondary = EmeraldColors.colorAccent,
+    primary = EmeraldColors.ColorPrimary,
+    primaryVariant = EmeraldColors.ColorPrimaryDark,
+    secondary = EmeraldColors.ColorAccent,
     background = Color.White
 )
 
@@ -30,7 +30,7 @@ fun EmeraldTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composabl
     }
     MaterialTheme(
         colors = colors,
-        typography = EmeraldTypography.textTypography,
+        typography = EmeraldTypography.TextTypography,
         content = content
     )
 }
