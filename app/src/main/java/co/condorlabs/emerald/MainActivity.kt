@@ -3,10 +3,9 @@ package co.condorlabs.emerald
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -34,7 +33,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             EmeraldTheme {
-                Column(Modifier.padding(horizontal = 20.dp)) {
+                val scrollState = rememberScrollState()
+                Column(
+                    Modifier
+                        .padding(horizontal = 20.dp)
+                        .fillMaxSize()
+                        .verticalScroll(scrollState)
+                ) {
                     TextSample()
                     TextFieldSample()
                     EmeraldButtons()
@@ -85,8 +90,7 @@ fun TextFieldSample() {
     val onValueChangedError = { text: TextFieldValue ->
         textStateError.value = textStateError.value.copy(text = text)
         if (text.text.length > 5) {
-            textStateError.value =
-                textStateError.value.copy(text = text, error = "This is an error message")
+            textStateError.value = textStateError.value.copy(text = text, error = "This is an error message")
         }
     }
 

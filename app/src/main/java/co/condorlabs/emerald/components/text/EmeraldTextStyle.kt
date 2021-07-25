@@ -10,16 +10,16 @@ sealed class EmeraldTextStyle(
     private val colorText: Color
 ) {
 
-    object H1Title : EmeraldTextStyle(EmeraldTypography.textTypography.h1, EmeraldColors.textColor)
-    object H2Title : EmeraldTextStyle(EmeraldTypography.textTypography.h2, EmeraldColors.textColor)
-    object H3Title : EmeraldTextStyle(EmeraldTypography.textTypography.h3, EmeraldColors.textColor)
-    object Title : EmeraldTextStyle(EmeraldTypography.textTypography.h4, EmeraldColors.textColor)
-    object SectionTitle : EmeraldTextStyle(EmeraldTypography.textTypography.h5, EmeraldColors.textColor)
-    object SubTitle : EmeraldTextStyle(EmeraldTypography.textTypography.subtitle1, EmeraldColors.subtitleColor)
-    object Body : EmeraldTextStyle(EmeraldTypography.textTypography.body1, EmeraldColors.labelColor)
-    object SectionBody : EmeraldTextStyle(EmeraldTypography.textTypography.body1, EmeraldColors.textColor)
-    object Link : EmeraldTextStyle(EmeraldTypography.textTypography.body2, EmeraldColors.primaryColor)
-    object BodySmall : EmeraldTextStyle(EmeraldTypography.textTypography.caption, EmeraldColors.subtitleColor)
+    object H1Title : EmeraldTextStyle(EmeraldTypography.TextTypography.h1, EmeraldColors.TextColor)
+    object H2Title : EmeraldTextStyle(EmeraldTypography.TextTypography.h2, EmeraldColors.TextColor)
+    object H3Title : EmeraldTextStyle(EmeraldTypography.TextTypography.h3, EmeraldColors.TextColor)
+    object Title : EmeraldTextStyle(EmeraldTypography.TextTypography.h4, EmeraldColors.TextColor)
+    object SectionTitle : EmeraldTextStyle(EmeraldTypography.TextTypography.h5, EmeraldColors.TextColor)
+    object SubTitle : EmeraldTextStyle(EmeraldTypography.TextTypography.subtitle1, EmeraldColors.SubtitleColor)
+    object Body : EmeraldTextStyle(EmeraldTypography.TextTypography.body1, EmeraldColors.LabelColor)
+    object SectionBody : EmeraldTextStyle(EmeraldTypography.TextTypography.body1, EmeraldColors.TextColor)
+    object Link : EmeraldTextStyle(EmeraldTypography.TextTypography.body2, EmeraldColors.InfoColor)
+    object BodySmall : EmeraldTextStyle(EmeraldTypography.TextTypography.caption, EmeraldColors.SubtitleColor)
 
     fun getColorText(): Color {
         return colorText

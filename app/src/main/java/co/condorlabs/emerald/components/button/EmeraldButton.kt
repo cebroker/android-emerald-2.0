@@ -4,7 +4,12 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.ButtonElevation
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -23,8 +28,8 @@ import co.condorlabs.emerald.components.utils.RippleColorTheme
 fun EmeraldButton(
     text: String,
     emeraldButtonStyle: EmeraldButtonStyle,
-    emeraldButtonState: EmeraldButtonState = EmeraldButtonState.Normal,
     modifier: Modifier = Modifier,
+    emeraldButtonState: EmeraldButtonState = EmeraldButtonState.Normal,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     elevation: ButtonElevation? = ButtonDefaults.elevation(),
