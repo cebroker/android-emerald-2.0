@@ -37,27 +37,7 @@ class MainActivity : AppCompatActivity() {
                 Column(Modifier.padding(horizontal = 20.dp)) {
                     TextSample()
                     TextFieldSample()
-                    val currentButtonState: MutableState<EmeraldButtonState> = remember { mutableStateOf(EmeraldButtonState.Normal) }
-                    EmeraldButton(
-                        text = "Primary Button",
-                        emeraldButtonStyle = EmeraldButtonStyle.EmeraldPrimaryButton,
-                        modifier = Modifier.fillMaxWidth().height(40.dp),
-                    ) {
-                        if(currentButtonState.value is EmeraldButtonState.Normal) {
-                            currentButtonState.value = EmeraldButtonState.Loading
-                        } else {
-                            currentButtonState.value = EmeraldButtonState.Normal
-                        }
-                    }
-                    EmeraldButton(
-                        text = "Success Button",
-                        emeraldButtonStyle = EmeraldButtonStyle.EmeraldSuccessButton
-                    ) {}
-
-                    EmeraldButton(
-                        text = "Danger Button",
-                        emeraldButtonStyle = EmeraldButtonStyle.EmeraldDangerButton
-                    ) {}
+                    EmeraldButtons()
                 }
             }
         }
@@ -105,7 +85,8 @@ fun TextFieldSample() {
     val onValueChangedError = { text: TextFieldValue ->
         textStateError.value = textStateError.value.copy(text = text)
         if (text.text.length > 5) {
-            textStateError.value = textStateError.value.copy(text = text, error = "This is an error message")
+            textStateError.value =
+                textStateError.value.copy(text = text, error = "This is an error message")
         }
     }
 
@@ -127,5 +108,40 @@ fun TextFieldSample() {
             label = "With error message",
         )
     }
+}
 
+@Composable
+fun EmeraldButtons() {
+    val currentButtonState: MutableState<EmeraldButtonState> =
+        remember { mutableStateOf(EmeraldButtonState.Normal) }
+    EmeraldButton(
+        text = "Primary Button",
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth(),
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldPrimaryButton,
+        emeraldButtonState = currentButtonState.value,
+    ) {
+        if (currentButtonState.value is EmeraldButtonState.Normal) {
+            currentButtonState.value = EmeraldButtonState.Loading
+        } else {
+            currentButtonState.value = EmeraldButtonState.Normal
+        }
+    }
+
+    EmeraldButton(
+        text = "Success Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldSuccessButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Danger Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldDangerButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
 }
