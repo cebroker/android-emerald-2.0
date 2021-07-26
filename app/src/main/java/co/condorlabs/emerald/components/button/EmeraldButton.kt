@@ -24,8 +24,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.utils.RippleColorTheme
+import co.condorlabs.emerald.numberToDp
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun EmeraldButton(
     text: String,
@@ -44,6 +44,7 @@ fun EmeraldButton(
     }
     Box {
         val isTouched = remember {
+            //TODO: The idea is that when we have knowledge with which event to execute this state, the validations that are currently reflected are carried out. This will go in another PR.
             mutableStateOf(false)
         }
         CompositionLocalProvider(LocalRippleTheme provides RippleColorTheme(emeraldButtonStyle.rippleColor)) {
@@ -51,7 +52,7 @@ fun EmeraldButton(
                 onClick = clickAction,
                 border = emeraldButtonStyle.strokeWidth,
                 colors = ButtonDefaults.buttonColors(
-                    backgroundColor = if(isTouched.value) emeraldButtonStyle.rippleColor else emeraldButtonStyle.backgroundColor
+                    backgroundColor = if (isTouched.value) emeraldButtonStyle.rippleColor else emeraldButtonStyle.backgroundColor
                 ),
                 modifier = modifier
                     .onGloballyPositioned {
@@ -63,7 +64,7 @@ fun EmeraldButton(
                 shape = shape,
                 contentPadding = contentPadding
             ) {
-                if (!isLoading(emeraldButtonState = emeraldButtonState)) {
+                if (emeraldButtonState is EmeraldButtonState.Normal) {
                     Text(
                         //TODO: The textStyle will be added later
                         text = text,
@@ -72,34 +73,15 @@ fun EmeraldButton(
                 }
             }
 
-            if (isLoading(emeraldButtonState = emeraldButtonState)) {
+            if (emeraldButtonState is EmeraldButtonState.Loading) {
                 CircularProgressIndicator(
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .size(numberToDp(number = buttonSize.value) - DEFAULT_REDUCE_PADDING.dp),
+                        .size(buttonSize.value.numberToDp() - DEFAULT_REDUCE_PADDING.dp),
                     color = emeraldButtonStyle.textColor
                 )
             }
         }
-    }
-}
-
-@Composable
-private fun isLoading(emeraldButtonState: EmeraldButtonState): Boolean {
-    return when (emeraldButtonState) {
-        EmeraldButtonState.Normal -> {
-            false
-        }
-        EmeraldButtonState.Loading -> {
-            return true
-        }
-    }
-}
-
-@Composable
-fun numberToDp(number: Int): Dp {
-    return with(LocalDensity.current) {
-        number.toDp()
     }
 }
 

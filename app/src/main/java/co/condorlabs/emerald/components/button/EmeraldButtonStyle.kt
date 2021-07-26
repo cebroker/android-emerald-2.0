@@ -40,7 +40,7 @@ sealed class EmeraldButtonStyle(
     )
 
     object EmeraldWarningButton: EmeraldButtonStyle(
-        backgroundColor = EmeraldColors.DangerColor,
+        backgroundColor = EmeraldColors.WarningColor,
         textColor = Color.White,
         rippleColor = EmeraldColors.WarningRippleColor
     )
