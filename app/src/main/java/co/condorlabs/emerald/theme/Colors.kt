@@ -19,6 +19,7 @@ object EmeraldColors {
     val SuccessColor = Color(0xFF00A950)
     val DangerColor = Color(0xFFDE350B)
     val WarningColor = Color(0xFFFFAA00)
+    val WarningRippleColor = Color(0xFFCC8800)
     val InfoColor = Color(0xFF0073E9)
 
     val TransparentColor = Color(0x00FFFFFF)
