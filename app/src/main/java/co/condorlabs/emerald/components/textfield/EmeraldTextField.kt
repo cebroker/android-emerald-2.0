@@ -1,7 +1,10 @@
 package co.condorlabs.emerald.components.textfield
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -12,7 +15,9 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,6 +34,8 @@ fun EmeraldTextField(
     label: String,
     modifier: Modifier = Modifier,
     placeholder: String = Empty,
+    helperText: String = Empty,
+    maxLength: Int? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     singleLine: Boolean = true,
@@ -43,12 +50,16 @@ fun EmeraldTextField(
     shape: Shape = MaterialTheme.shapes.small,
     colors: TextFieldColors = emeraldTextFieldColors()
 ) {
-    Column {
+    Column(modifier = modifier.animateContentSize()) {
         OutlinedTextField(
             value = state.text,
-            onValueChange = onValueChange,
+            onValueChange = {
+                if (it.text.length <= maxLength ?: Int.MAX_VALUE) {
+                    onValueChange(it)
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
             label = { Text(text = label, fontWeight = FontWeight.Light) },
-            modifier = modifier,
             placeholder = { Text(text = placeholder) },
             enabled = enabled,
             readOnly = readOnly,
@@ -65,11 +76,40 @@ fun EmeraldTextField(
             interactionSource = interactionSource,
             colors = colors
         )
-        Text(
-            modifier = Modifier.padding(start = EmeraldDimens.PaddingErrorMessageTextField),
-            text = state.error ?: Empty,
-            style = MaterialTheme.typography.overline.copy(color = EmeraldColors.DangerColor)
-        )
+        Box(modifier = Modifier.fillMaxWidth()) {
+            if (state.error != null || helperText.isNotBlank()) {
+                Text(
+                    modifier = Modifier
+                        .padding(start = EmeraldDimens.PaddingErrorMessageTextField)
+                        .align(Alignment.TopStart),
+                    text = state.error ?: helperText,
+                    style = MaterialTheme.typography.overline.copy(
+                        color = getColorByErrorState(state.error)
+                    )
+                )
+            }
+            if (maxLength != null) {
+                Text(
+                    modifier = Modifier
+                        .padding(end = EmeraldDimens.PaddingErrorMessageTextField)
+                        .align(Alignment.TopEnd),
+                    text = "${state.text.text.length}/$maxLength",
+                    style = MaterialTheme.typography.overline.copy(
+                        color = getColorByErrorState(state.error)
+                    )
+                )
+            }
+
+        }
+
+    }
+}
+
+private fun getColorByErrorState(error: String?): Color {
+    return if (error != null) {
+        EmeraldColors.DangerColor
+    } else {
+        EmeraldColors.TextColor
     }
 }
 

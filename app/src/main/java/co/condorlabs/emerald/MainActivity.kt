@@ -92,7 +92,7 @@ fun TextFieldSample() {
     }
 
     val onValueChangedError = { text: TextFieldValue ->
-        textStateError.value = textStateError.value.copy(text = text)
+        textStateError.value = EmeraldTextFieldState(text = text)
         if (text.text.length > 5) {
             textStateError.value = textStateError.value.copy(text = text, error = "This is an error message")
         }
@@ -114,6 +114,8 @@ fun TextFieldSample() {
             state = textStateError.value,
             onValueChange = onValueChangedError,
             label = "With error message",
+            maxLength = 10,
+            helperText = "With max length"
         )
     }
 }
