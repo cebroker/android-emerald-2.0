@@ -1,5 +1,6 @@
 package co.condorlabs.emerald.components.button
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,18 +14,19 @@ import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.utils.RippleColorTheme
 import co.condorlabs.emerald.numberToDp
+import co.condorlabs.emerald.theme.EmeraldFonts
 
 @Composable
 fun EmeraldButton(
@@ -37,6 +39,7 @@ fun EmeraldButton(
     elevation: ButtonElevation? = ButtonDefaults.elevation(),
     shape: Shape = MaterialTheme.shapes.small,
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    textStyle: TextStyle = TextStyle(fontFamily = EmeraldFonts.SemiBold),
     clickAction: () -> Unit
 ) {
     val buttonSize = remember {
@@ -50,9 +53,9 @@ fun EmeraldButton(
         CompositionLocalProvider(LocalRippleTheme provides RippleColorTheme(emeraldButtonStyle.rippleColor)) {
             Button(
                 onClick = clickAction,
-                border = emeraldButtonStyle.strokeWidth,
+                border = getButtonBorder(enabled, emeraldButtonStyle),
                 colors = ButtonDefaults.buttonColors(
-                    backgroundColor = if (isTouched.value) emeraldButtonStyle.rippleColor else emeraldButtonStyle.backgroundColor
+                    backgroundColor = getBackgroundColor(isTouched, emeraldButtonStyle)
                 ),
                 modifier = modifier
                     .onGloballyPositioned {
@@ -60,15 +63,18 @@ fun EmeraldButton(
                     },
                 enabled = enabled,
                 interactionSource = interactionSource,
-                elevation = elevation,
+                elevation = ButtonDefaults.elevation(
+                    defaultElevation = emeraldButtonStyle.defaultElevation,
+                    pressedElevation = emeraldButtonStyle.pressedElevation
+                ),
                 shape = shape,
-                contentPadding = contentPadding
+                contentPadding = contentPadding,
             ) {
                 if (emeraldButtonState is EmeraldButtonState.Normal) {
                     Text(
-                        //TODO: The textStyle will be added later
                         text = text,
-                        color = if (isTouched.value) emeraldButtonStyle.highlightTextColor else emeraldButtonStyle.textColor
+                        color = getTextColor(isTouched, emeraldButtonStyle),
+                        style = textStyle
                     )
                 }
             }
@@ -78,13 +84,36 @@ fun EmeraldButton(
                     modifier = Modifier
                         .align(Alignment.Center)
                         .size(buttonSize.value.numberToDp() - DEFAULT_REDUCE_PADDING.dp),
-                    color = emeraldButtonStyle.textColor
+                    color = emeraldButtonStyle.textColor,
+                    strokeWidth = DEFAULT_PROGRESS_STROKE_WIDTH.numberToDp()
                 )
             }
         }
     }
 }
 
-private const val DEFAULT_REDUCE_PADDING = 4
+@Composable
+private fun getTextColor(
+    isTouched: MutableState<Boolean>,
+    emeraldButtonStyle: EmeraldButtonStyle
+) = if (isTouched.value) emeraldButtonStyle.highlightTextColor else emeraldButtonStyle.textColor
+
+@Composable
+private fun getButtonBorder(
+    enabled: Boolean,
+    emeraldButtonStyle: EmeraldButtonStyle
+) = if (enabled) emeraldButtonStyle.strokeWidth else BorderStroke(
+    1.dp,
+    Color.DarkGray.copy(alpha = 0.12f)
+)
+
+@Composable
+private fun getBackgroundColor(
+    isTouched: MutableState<Boolean>,
+    emeraldButtonStyle: EmeraldButtonStyle
+) = if (isTouched.value) emeraldButtonStyle.rippleColor else emeraldButtonStyle.backgroundColor
+
+private const val DEFAULT_REDUCE_PADDING = 10
+private const val DEFAULT_PROGRESS_STROKE_WIDTH = 8
 
 

@@ -10,11 +10,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.OutlinedButton
+import androidx.compose.material.SnackbarDefaults.backgroundColor
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.button.EmeraldButton
@@ -24,6 +32,8 @@ import co.condorlabs.emerald.components.text.EmeraldText
 import co.condorlabs.emerald.components.text.EmeraldTextStyle
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
+import co.condorlabs.emerald.theme.EmeraldColors
+import co.condorlabs.emerald.theme.EmeraldFonts
 import co.condorlabs.emerald.theme.EmeraldTheme
 
 /**
@@ -38,15 +48,17 @@ class MainActivity : AppCompatActivity() {
         setContent {
             EmeraldTheme {
                 val scrollState = rememberScrollState()
-                Column(
-                    Modifier
-                        .padding(horizontal = 20.dp)
-                        .fillMaxSize()
-                        .verticalScroll(scrollState)
-                ) {
-                    TextSample()
-                    TextFieldSample()
-                    EmeraldButtons()
+                Surface {
+                    Column(
+                        Modifier
+                            .padding(horizontal = 20.dp)
+                            .fillMaxSize()
+                            .verticalScroll(scrollState)
+                    ) {
+                        TextSample()
+                        TextFieldSample()
+                        EmeraldButtons()
+                    }
                 }
             }
         }
@@ -129,6 +141,7 @@ fun EmeraldButtons() {
             .fillMaxWidth(),
         emeraldButtonStyle = EmeraldButtonStyle.EmeraldPrimaryButton,
         emeraldButtonState = currentButtonState.value,
+        textStyle = TextStyle(fontFamily = EmeraldFonts.SemiBold)
     ) {
         if (currentButtonState.value is EmeraldButtonState.Normal) {
             currentButtonState.value = EmeraldButtonState.Loading
@@ -136,6 +149,15 @@ fun EmeraldButtons() {
             currentButtonState.value = EmeraldButtonState.Normal
         }
     }
+
+    EmeraldButton(
+        text = "Primary Button Disabled",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldSuccessButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth(),
+        enabled = false,
+    ) {}
 
     EmeraldButton(
         text = "Success Button",
@@ -149,6 +171,47 @@ fun EmeraldButtons() {
         text = "Danger Button",
         emeraldButtonStyle = EmeraldButtonStyle.EmeraldDangerButton,
         modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Warning Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldWarningButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Overlay Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldOverlayButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Default Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldDefaultButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Flat Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldFlatPrimaryButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Shape white Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldShapeWhiteButton,
+        modifier = Modifier
+            .padding(bottom = 10.dp)
             .height(40.dp)
             .fillMaxWidth()
     ) {}

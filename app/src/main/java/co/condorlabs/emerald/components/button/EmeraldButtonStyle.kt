@@ -2,6 +2,7 @@ package co.condorlabs.emerald.components.button
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.theme.EmeraldColors
 
@@ -11,14 +12,16 @@ sealed class EmeraldButtonStyle(
     val rippleColor: Color,
     val strokeColor: Color = backgroundColor,
     val strokeWidth: BorderStroke = BorderStroke(1.dp, backgroundColor),
-    val highlightTextColor: Color = textColor
+    val highlightTextColor: Color = textColor,
+    val defaultElevation: Dp = 2.dp,
+    val pressedElevation: Dp = 8.dp
 ) {
 
     object EmeraldDefaultButton: EmeraldButtonStyle(
         backgroundColor = Color.White,
         textColor = Color.Black,
-        rippleColor = EmeraldColors.DefaultRippleColor,
-        strokeWidth = BorderStroke(1.dp, EmeraldColors.DefaultRippleColor)
+        rippleColor = EmeraldColors.DefaultButtonBorderColor,
+        strokeWidth = BorderStroke(1.dp, EmeraldColors.DefaultButtonBorderColor)
     )
 
     object EmeraldPrimaryButton: EmeraldButtonStyle(
@@ -64,6 +67,8 @@ sealed class EmeraldButtonStyle(
         textColor = Color.White,
         rippleColor = Color.White,
         strokeWidth = BorderStroke(1.dp, Color.White),
-        highlightTextColor = EmeraldColors.InfoColor
+        highlightTextColor = EmeraldColors.InfoColor,
+        defaultElevation = 0.dp,
+        pressedElevation = 0.dp
     )
 }
