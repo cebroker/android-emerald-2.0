@@ -3,7 +3,7 @@ package co.condorlabs.emerald.theme
 import androidx.compose.ui.unit.dp
 
 object EmeraldDimens {
-    val PaddingErrorMessageTextField = 10.dp
+    val PaddingErrorMessageTextField = 16.dp
     val DefaultWidthToBorderStroke = 1.dp
     val DefaultReducePadding = 10.dp
     val DefaultProgressStrokeWidth = 8.dp
