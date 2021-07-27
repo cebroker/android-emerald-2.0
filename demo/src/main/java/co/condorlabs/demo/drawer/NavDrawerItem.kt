@@ -1,4 +1,4 @@
-package co.condorlabs.emerald.demo.drawer
+package co.condorlabs.demo.drawer
 
 sealed class NavDrawerItem(var route: String, var title: String) {
     object Text : NavDrawerItem("text", "Text")

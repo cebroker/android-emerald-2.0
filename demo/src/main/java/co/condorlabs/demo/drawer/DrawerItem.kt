@@ -1,4 +1,4 @@
-package co.condorlabs.emerald.demo.drawer
+package co.condorlabs.demo.drawer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

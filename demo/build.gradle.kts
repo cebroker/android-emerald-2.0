@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.library")
+    id("com.android.application")
     id("kotlin-android")
 }
 
@@ -8,8 +8,11 @@ android {
     buildToolsVersion = DefaultConfig.buildToolsVersion
 
     defaultConfig {
+        applicationId = DefaultConfig.applicationId
         minSdk = DefaultConfig.minSdk
         targetSdk = DefaultConfig.targetSdk
+        versionCode = DefaultConfig.versionCode
+        versionName = DefaultConfig.versionName
         testInstrumentationRunner = DefaultConfig.testInstrumentationRunner
         vectorDrawables {
             useSupportLibrary = true
@@ -38,12 +41,14 @@ android {
 }
 
 dependencies {
-    api(Dependencies.material)
-    api(Dependencies.Compose.ui)
-    api(Dependencies.Compose.material)
-    api(Dependencies.Compose.uiTooling) {
-        version {
-            strictly("1.0.0-beta09")
-        }
-    }
+    implementation(project(mapOf("path" to ":app")))
+
+    implementation(Dependencies.Compose.activity)
+    implementation(Dependencies.Compose.navigation)
+
+    testImplementation(Dependencies.Test.junit)
+
+    androidTestImplementation(Dependencies.Test.extJUnit)
+    androidTestImplementation(Dependencies.Test.espressoCore)
+    androidTestImplementation(Dependencies.Test.compose)
 }
