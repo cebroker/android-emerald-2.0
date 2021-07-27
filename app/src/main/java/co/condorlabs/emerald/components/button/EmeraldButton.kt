@@ -23,10 +23,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.utils.RippleColorTheme
 import co.condorlabs.emerald.numberToDp
 import co.condorlabs.emerald.theme.ButtonTextStyle
+import co.condorlabs.emerald.theme.EmeraldDimens
 
 @Composable
 fun EmeraldButton(
@@ -80,9 +80,9 @@ fun EmeraldButton(
                 CircularProgressIndicator(
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .size(buttonSize.value.numberToDp() - DEFAULT_REDUCE_PADDING.dp),
+                        .size(buttonSize.value.numberToDp() - EmeraldDimens.DefaultReducePadding),
                     color = emeraldButtonStyle.textColor,
-                    strokeWidth = DEFAULT_PROGRESS_STROKE_WIDTH.numberToDp()
+                    strokeWidth = EmeraldDimens.DefaultProgressStrokeWidth
                 )
             }
         }
@@ -106,11 +106,10 @@ private fun getButtonBorder(
     enabled: Boolean,
     emeraldButtonStyle: EmeraldButtonStyle
 ) = if (enabled) emeraldButtonStyle.strokeWidth else BorderStroke(
-    1.dp,
-    Color.DarkGray.copy(alpha = 0.12f)
+    EmeraldDimens.DefaultWidthToBorderStroke,
+    Color.DarkGray.copy(alpha = DefaultAlphaDisable)
 )
 
-private const val DEFAULT_REDUCE_PADDING = 10
-private const val DEFAULT_PROGRESS_STROKE_WIDTH = 8
+private const val DefaultAlphaDisable = 0.12f
 
 

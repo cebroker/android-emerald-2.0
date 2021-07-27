@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.theme.EmeraldColors
+import co.condorlabs.emerald.theme.EmeraldDimens
 
 sealed class EmeraldButtonStyle(
     val backgroundColor: Color,
@@ -13,8 +14,8 @@ sealed class EmeraldButtonStyle(
     val strokeColor: Color = backgroundColor,
     val strokeWidth: BorderStroke = BorderStroke(1.dp, backgroundColor),
     val highlightTextColor: Color = textColor,
-    val defaultElevation: Dp = 2.dp,
-    val pressedElevation: Dp = 8.dp
+    val defaultElevation: Dp = EmeraldDimens.DefaultElevation,
+    val pressedElevation: Dp = EmeraldDimens.DefaultPressedElevation
 ) {
 
     object EmeraldDefaultButton: EmeraldButtonStyle(
