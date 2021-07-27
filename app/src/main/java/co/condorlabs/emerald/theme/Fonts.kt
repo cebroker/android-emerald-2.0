@@ -10,6 +10,4 @@ object EmeraldFonts {
         Font(R.font.open_sans_regular, FontWeight.Normal),
         Font(R.font.open_sans_semi_bold, FontWeight.SemiBold),
     )
-
-    val SemiBold = FontFamily(Font(R.font.open_sans_semi_bold, FontWeight.SemiBold))
 }
