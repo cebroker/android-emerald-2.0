@@ -3,6 +3,7 @@ package co.condorlabs.emerald.demo.screens.samples
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -15,16 +16,15 @@ import co.condorlabs.emerald.components.button.EmeraldButtonStyle
 
 @Composable
 fun ButtonScreenSample() {
-    val currentButtonState: MutableState<EmeraldButtonState> = remember { mutableStateOf(EmeraldButtonState.Normal) }
-
     Column {
+        val currentButtonState: MutableState<EmeraldButtonState> = remember { mutableStateOf(EmeraldButtonState.Normal) }
         EmeraldButton(
             text = "Primary Button",
             modifier = Modifier
                 .height(40.dp)
                 .fillMaxWidth(),
             emeraldButtonStyle = EmeraldButtonStyle.EmeraldPrimaryButton,
-            emeraldButtonState = currentButtonState.value,
+            emeraldButtonState = currentButtonState.value
         ) {
             if (currentButtonState.value is EmeraldButtonState.Normal) {
                 currentButtonState.value = EmeraldButtonState.Loading
@@ -32,6 +32,16 @@ fun ButtonScreenSample() {
                 currentButtonState.value = EmeraldButtonState.Normal
             }
         }
+
+        EmeraldButton(
+            text = "Primary Button Disabled",
+            emeraldButtonStyle = EmeraldButtonStyle.EmeraldSuccessButton,
+            modifier = Modifier
+                .height(40.dp)
+                .fillMaxWidth(),
+            enabled = false,
+        ) {}
+
         EmeraldButton(
             text = "Success Button",
             emeraldButtonStyle = EmeraldButtonStyle.EmeraldSuccessButton,
@@ -44,6 +54,47 @@ fun ButtonScreenSample() {
             text = "Danger Button",
             emeraldButtonStyle = EmeraldButtonStyle.EmeraldDangerButton,
             modifier = Modifier
+                .height(40.dp)
+                .fillMaxWidth()
+        ) {}
+
+        EmeraldButton(
+            text = "Warning Button",
+            emeraldButtonStyle = EmeraldButtonStyle.EmeraldWarningButton,
+            modifier = Modifier
+                .height(40.dp)
+                .fillMaxWidth()
+        ) {}
+
+        EmeraldButton(
+            text = "Overlay Button",
+            emeraldButtonStyle = EmeraldButtonStyle.EmeraldOverlayButton,
+            modifier = Modifier
+                .height(40.dp)
+                .fillMaxWidth()
+        ) {}
+
+        EmeraldButton(
+            text = "Default Button",
+            emeraldButtonStyle = EmeraldButtonStyle.EmeraldDefaultButton,
+            modifier = Modifier
+                .height(40.dp)
+                .fillMaxWidth()
+        ) {}
+
+        EmeraldButton(
+            text = "Flat Button",
+            emeraldButtonStyle = EmeraldButtonStyle.EmeraldFlatPrimaryButton,
+            modifier = Modifier
+                .height(40.dp)
+                .fillMaxWidth()
+        ) {}
+
+        EmeraldButton(
+            text = "Shape white Button",
+            emeraldButtonStyle = EmeraldButtonStyle.EmeraldShapeWhiteButton,
+            modifier = Modifier
+                .padding(bottom = 10.dp)
                 .height(40.dp)
                 .fillMaxWidth()
         ) {}
