@@ -1,5 +1,6 @@
 package co.condorlabs.emerald.components.textfield
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -48,7 +50,7 @@ fun EmeraldTextField(
     shape: Shape = MaterialTheme.shapes.small,
     colors: TextFieldColors = emeraldTextFieldColors()
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.animateContentSize()) {
         OutlinedTextField(
             value = state.text,
             onValueChange = {
@@ -75,39 +77,39 @@ fun EmeraldTextField(
             colors = colors
         )
         Box(modifier = Modifier.fillMaxWidth()) {
-            Text(
-                modifier = Modifier
-                    .padding(start = EmeraldDimens.PaddingErrorMessageTextField)
-                    .align(Alignment.TopStart),
-                text = state.error ?: helperText,
-                style = MaterialTheme.typography.overline.copy(
-                    color = if (state.error != null) {
-                        EmeraldColors.DangerColor
-                    } else {
-                        EmeraldColors.TextColor
-                    }
+            if (state.error != null || helperText.isNotBlank()) {
+                Text(
+                    modifier = Modifier
+                        .padding(start = EmeraldDimens.PaddingErrorMessageTextField)
+                        .align(Alignment.TopStart),
+                    text = state.error ?: helperText,
+                    style = MaterialTheme.typography.overline.copy(
+                        color = getColorByErrorState(state.error)
+                    )
                 )
-            )
-            Text(
-                modifier = Modifier
-                    .padding(end = EmeraldDimens.PaddingErrorMessageTextField)
-                    .align(Alignment.TopEnd),
-                text = if (maxLength != null) {
-                    "${state.text.text.length}/$maxLength"
-                } else {
-                    Empty
-                },
-                style = MaterialTheme.typography.overline.copy(
-                    color = if (state.error != null) {
-                        EmeraldColors.DangerColor
-                    } else {
-                        EmeraldColors.TextColor
-                    }
+            }
+            if (maxLength != null) {
+                Text(
+                    modifier = Modifier
+                        .padding(end = EmeraldDimens.PaddingErrorMessageTextField)
+                        .align(Alignment.TopEnd),
+                    text = "${state.text.text.length}/$maxLength",
+                    style = MaterialTheme.typography.overline.copy(
+                        color = getColorByErrorState(state.error)
+                    )
                 )
-            )
+            }
 
         }
 
+    }
+}
+
+private fun getColorByErrorState(error: String?): Color {
+    return if (error != null) {
+        EmeraldColors.DangerColor
+    } else {
+        EmeraldColors.TextColor
     }
 }
 
