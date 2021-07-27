@@ -5,6 +5,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
+object ButtonTextStyle {
+    val TextStyle = TextStyle(fontFamily =  EmeraldFonts.OpenSans, fontWeight = FontWeight.SemiBold)
+}
+
 object EmeraldTypography {
     val TextTypography = Typography(
         h1 = TextStyle(fontFamily = EmeraldFonts.OpenSans, fontSize = 30.sp, fontWeight = FontWeight.Normal),

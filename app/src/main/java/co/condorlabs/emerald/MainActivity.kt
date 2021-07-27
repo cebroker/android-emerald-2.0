@@ -94,7 +94,8 @@ fun TextFieldSample() {
     val onValueChangedError = { text: TextFieldValue ->
         textStateError.value = EmeraldTextFieldState(text = text)
         if (text.text.length > 5) {
-            textStateError.value = textStateError.value.copy(text = text, error = "This is an error message")
+            textStateError.value =
+                textStateError.value.copy(text = text, error = "This is an error message")
         }
     }
 
@@ -130,7 +131,7 @@ fun EmeraldButtons() {
             .height(40.dp)
             .fillMaxWidth(),
         emeraldButtonStyle = EmeraldButtonStyle.EmeraldPrimaryButton,
-        emeraldButtonState = currentButtonState.value,
+        emeraldButtonState = currentButtonState.value
     ) {
         if (currentButtonState.value is EmeraldButtonState.Normal) {
             currentButtonState.value = EmeraldButtonState.Loading
@@ -138,6 +139,15 @@ fun EmeraldButtons() {
             currentButtonState.value = EmeraldButtonState.Normal
         }
     }
+
+    EmeraldButton(
+        text = "Primary Button Disabled",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldSuccessButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth(),
+        enabled = false,
+    ) {}
 
     EmeraldButton(
         text = "Success Button",
@@ -151,6 +161,47 @@ fun EmeraldButtons() {
         text = "Danger Button",
         emeraldButtonStyle = EmeraldButtonStyle.EmeraldDangerButton,
         modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Warning Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldWarningButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Overlay Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldOverlayButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Default Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldDefaultButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Flat Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldFlatPrimaryButton,
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth()
+    ) {}
+
+    EmeraldButton(
+        text = "Shape white Button",
+        emeraldButtonStyle = EmeraldButtonStyle.EmeraldShapeWhiteButton,
+        modifier = Modifier
+            .padding(bottom = 10.dp)
             .height(40.dp)
             .fillMaxWidth()
     ) {}
