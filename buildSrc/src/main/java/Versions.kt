@@ -9,6 +9,7 @@ object Versions {
     const val activityCompose = "1.3.0-rc02"
     const val lifecycleRuntime = "2.3.1"
     const val material = "1.4.0"
+    const val navigation = "2.4.0-alpha05"
 }
 
 object Dependencies {
@@ -23,6 +24,7 @@ object Dependencies {
         val material by lazy { "androidx.compose.material:material:${Versions.compose}" }
         val uiTooling by lazy { "androidx.compose.ui:ui-tooling:${Versions.compose}" }
         val activity by lazy { "androidx.activity:activity-compose:${Versions.activityCompose}" }
+        val navigation by lazy { "androidx.navigation:navigation-compose:${Versions.navigation}" }
     }
 
     object Test {

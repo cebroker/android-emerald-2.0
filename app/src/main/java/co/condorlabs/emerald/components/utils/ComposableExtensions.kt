@@ -1,4 +1,4 @@
-package co.condorlabs.emerald
+package co.condorlabs.emerald.components.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalDensity
