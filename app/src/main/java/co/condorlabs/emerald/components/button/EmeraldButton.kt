@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.TextStyle
 import co.condorlabs.emerald.components.utils.RippleColorTheme
-import co.condorlabs.emerald.numberToDp
+import co.condorlabs.emerald.components.utils.numberToDp
 import co.condorlabs.emerald.theme.ButtonTextStyle
 import co.condorlabs.emerald.theme.EmeraldDimens
 

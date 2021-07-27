@@ -52,6 +52,7 @@ dependencies {
         }
     }
     implementation(Dependencies.Compose.activity)
+    implementation(Dependencies.Compose.navigation)
 
     testImplementation(Dependencies.Test.junit)
 

@@ -23,7 +23,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
-import co.condorlabs.emerald.Empty
+import co.condorlabs.emerald.components.utils.Empty
 import co.condorlabs.emerald.theme.EmeraldColors
 import co.condorlabs.emerald.theme.EmeraldDimens
 
