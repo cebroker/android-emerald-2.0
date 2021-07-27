@@ -3,19 +3,15 @@ package co.condorlabs.emerald
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.button.EmeraldButton
@@ -46,7 +42,10 @@ class MainActivity : AppCompatActivity() {
                         .verticalScroll(scrollState)
                 ) {
                     TextSample()
+                    TextSample()
+                    TextSample()
                     TextFieldSample()
+                    TextSample()
                     EmeraldButton(
                         text = "Primary Button",
                         emeraldButtonStyle = EmeraldButtonStyle.EmeraldPrimaryButton,
@@ -106,7 +105,7 @@ fun TextFieldSample() {
     }
 
     val onValueChangedError = { text: TextFieldValue ->
-        textStateError.value = textStateError.value.copy(text = text)
+        textStateError.value = EmeraldTextFieldState(text = text)
         if (text.text.length > 5) {
             textStateError.value = textStateError.value.copy(text = text, error = "This is an error message")
         }
@@ -128,6 +127,8 @@ fun TextFieldSample() {
             state = textStateError.value,
             onValueChange = onValueChangedError,
             label = "With error message",
+            maxLength = 10,
+            helperText = "With max length"
         )
     }
 
