@@ -1,13 +1,13 @@
-package co.condorlabs.emerald.demo.navigation
+package co.condorlabs.demo.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import co.condorlabs.emerald.demo.drawer.NavDrawerItem
-import co.condorlabs.emerald.demo.screens.samples.ButtonScreenSample
-import co.condorlabs.emerald.demo.screens.samples.TextFieldScreenSample
-import co.condorlabs.emerald.demo.screens.samples.TextScreenSample
+import co.condorlabs.demo.drawer.NavDrawerItem
+import co.condorlabs.demo.screens.samples.ButtonScreenSample
+import co.condorlabs.demo.screens.samples.TextFieldScreenSample
+import co.condorlabs.demo.screens.samples.TextScreenSample
 
 
 @Composable
