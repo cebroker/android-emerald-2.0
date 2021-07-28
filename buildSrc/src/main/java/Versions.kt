@@ -1,13 +1,11 @@
 object Versions {
     const val gradlePlugin = "7.0.0-rc01"
     const val kotlin = "1.5.10"
-    const val coreKtx = "1.6.0"
     const val compose = "1.0.0-rc02"
     const val jUnit = "4.13.2"
     const val extJUnit = "1.1.3"
     const val espressoCore = "3.4.0"
     const val activityCompose = "1.3.0-rc02"
-    const val lifecycleRuntime = "2.3.1"
     const val material = "1.4.0"
     const val navigation = "2.4.0-alpha05"
 }
@@ -15,8 +13,6 @@ object Versions {
 object Dependencies {
 
     val kotlin by lazy { "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}" }
-    val coreKtx by lazy { "androidx.core:core-ktx:${Versions.coreKtx}" }
-    val lifecycleRuntime by lazy { "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntime}" }
     val material by lazy { "com.google.android.material:material:${Versions.material}" }
 
     object Compose {

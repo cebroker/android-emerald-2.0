@@ -1,10 +1,9 @@
-package co.condorlabs.emerald.demo
+package co.condorlabs.demo
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import co.condorlabs.emerald.demo.screens.MainScreen
-import co.condorlabs.emerald.theme.EmeraldTheme
+import co.condorlabs.demo.screens.MainScreen
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

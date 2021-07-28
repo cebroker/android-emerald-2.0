@@ -1,4 +1,4 @@
-package co.condorlabs.emerald.demo.drawer
+package co.condorlabs.demo.drawer
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import co.condorlabs.emerald.R
+import co.condorlabs.demo.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

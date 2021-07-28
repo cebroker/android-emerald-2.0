@@ -1,4 +1,4 @@
-package co.condorlabs.emerald.demo.drawer
+package co.condorlabs.demo.drawer
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -12,8 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import co.condorlabs.emerald.R
-import co.condorlabs.emerald.components.utils.Empty
+import co.condorlabs.demo.R
 import co.condorlabs.emerald.theme.EmeraldColors
 import co.condorlabs.emerald.theme.EmeraldFonts
 import kotlinx.coroutines.CoroutineScope
@@ -36,7 +35,7 @@ fun TopBar(scope: CoroutineScope, scaffoldState: ScaffoldState) {
                     scaffoldState.drawerState.open()
                 }
             }) {
-                Icon(Icons.Filled.Menu, Empty)
+                Icon(Icons.Filled.Menu, "")
             }
         },
         backgroundColor = EmeraldColors.ColorPrimary,

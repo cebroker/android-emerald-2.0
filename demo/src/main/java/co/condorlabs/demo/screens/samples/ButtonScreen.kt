@@ -1,4 +1,4 @@
-package co.condorlabs.emerald.demo.screens.samples
+package co.condorlabs.demo.screens.samples
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +16,7 @@ import co.condorlabs.emerald.components.button.EmeraldButtonStyle
 
 @Composable
 fun ButtonScreenSample() {
-    Column {
+    Column(modifier = Modifier.padding(10.dp)) {
         val currentButtonState: MutableState<EmeraldButtonState> = remember { mutableStateOf(EmeraldButtonState.Normal) }
         EmeraldButton(
             text = "Primary Button",
@@ -37,6 +37,7 @@ fun ButtonScreenSample() {
             text = "Primary Button Disabled",
             emeraldButtonStyle = EmeraldButtonStyle.EmeraldSuccessButton,
             modifier = Modifier
+                .padding(top = 10.dp)
                 .height(40.dp)
                 .fillMaxWidth(),
             enabled = false,
@@ -46,6 +47,7 @@ fun ButtonScreenSample() {
             text = "Success Button",
             emeraldButtonStyle = EmeraldButtonStyle.EmeraldSuccessButton,
             modifier = Modifier
+                .padding(top = 10.dp)
                 .height(40.dp)
                 .fillMaxWidth()
         ) {}
@@ -54,6 +56,7 @@ fun ButtonScreenSample() {
             text = "Danger Button",
             emeraldButtonStyle = EmeraldButtonStyle.EmeraldDangerButton,
             modifier = Modifier
+                .padding(top = 10.dp)
                 .height(40.dp)
                 .fillMaxWidth()
         ) {}
@@ -62,6 +65,7 @@ fun ButtonScreenSample() {
             text = "Warning Button",
             emeraldButtonStyle = EmeraldButtonStyle.EmeraldWarningButton,
             modifier = Modifier
+                .padding(top = 10.dp)
                 .height(40.dp)
                 .fillMaxWidth()
         ) {}
@@ -70,6 +74,7 @@ fun ButtonScreenSample() {
             text = "Overlay Button",
             emeraldButtonStyle = EmeraldButtonStyle.EmeraldOverlayButton,
             modifier = Modifier
+                .padding(top = 10.dp)
                 .height(40.dp)
                 .fillMaxWidth()
         ) {}
@@ -78,6 +83,7 @@ fun ButtonScreenSample() {
             text = "Default Button",
             emeraldButtonStyle = EmeraldButtonStyle.EmeraldDefaultButton,
             modifier = Modifier
+                .padding(top = 10.dp)
                 .height(40.dp)
                 .fillMaxWidth()
         ) {}
@@ -86,6 +92,7 @@ fun ButtonScreenSample() {
             text = "Flat Button",
             emeraldButtonStyle = EmeraldButtonStyle.EmeraldFlatPrimaryButton,
             modifier = Modifier
+                .padding(top = 10.dp)
                 .height(40.dp)
                 .fillMaxWidth()
         ) {}

@@ -1,4 +1,4 @@
-package co.condorlabs.emerald.demo.screens
+package co.condorlabs.demo.screens
 
 import androidx.compose.material.DrawerValue
 import androidx.compose.material.Scaffold
@@ -7,9 +7,9 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.compose.rememberNavController
-import co.condorlabs.emerald.demo.drawer.Drawer
-import co.condorlabs.emerald.demo.drawer.TopBar
-import co.condorlabs.emerald.demo.navigation.Navigation
+import co.condorlabs.demo.drawer.Drawer
+import co.condorlabs.demo.drawer.TopBar
+import co.condorlabs.demo.navigation.Navigation
 import co.condorlabs.emerald.theme.EmeraldColors
 
 @Composable
