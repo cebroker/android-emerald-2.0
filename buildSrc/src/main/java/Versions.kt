@@ -1,11 +1,11 @@
 object Versions {
-    const val gradlePlugin = "7.0.0-rc01"
+    const val gradlePlugin = "7.0.0"
     const val kotlin = "1.5.10"
-    const val compose = "1.0.0-rc02"
+    const val compose = "1.0.0"
     const val jUnit = "4.13.2"
     const val extJUnit = "1.1.3"
     const val espressoCore = "3.4.0"
-    const val activityCompose = "1.3.0-rc02"
+    const val activityCompose = "1.3.0"
     const val material = "1.4.0"
     const val navigation = "2.4.0-alpha05"
 }
