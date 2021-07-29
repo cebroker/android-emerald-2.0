@@ -35,10 +35,11 @@ fun TopBar(scope: CoroutineScope, scaffoldState: ScaffoldState) {
                     scaffoldState.drawerState.open()
                 }
             }) {
-                Icon(Icons.Filled.Menu, "")
+                Icon(Icons.Filled.Menu, Icons.Filled.Menu.toString())
             }
         },
         backgroundColor = EmeraldColors.ColorPrimary,
         contentColor = Color.White
     )
 }
+
