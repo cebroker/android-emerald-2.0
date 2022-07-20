@@ -3,6 +3,7 @@ package co.condorlabs.emerald.components.textfield
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.utils.Empty
 import co.condorlabs.emerald.theme.EmeraldColors
 import co.condorlabs.emerald.theme.EmeraldDimens
@@ -30,12 +32,12 @@ import co.condorlabs.emerald.theme.EmeraldDimens
 @Composable
 fun EmeraldTextField(
     state: EmeraldTextFieldState,
-    onValueChange: (TextFieldValue) -> Unit,
+    onValueChange: (String) -> Unit,
     label: String,
     modifier: Modifier = Modifier,
     placeholder: String = Empty,
-    helperText: String = Empty,
-    maxLength: Int? = null,
+    helperTextStart: String = Empty,
+    helperTextEnd: String = Empty,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     singleLine: Boolean = true,
@@ -50,14 +52,12 @@ fun EmeraldTextField(
     shape: Shape = MaterialTheme.shapes.small,
     colors: TextFieldColors = emeraldTextFieldColors()
 ) {
-    Column(modifier = modifier.animateContentSize()) {
+    Column(modifier = modifier
+        .animateContentSize()
+        .padding(20.dp)) {
         OutlinedTextField(
             value = state.text,
-            onValueChange = {
-                if (it.text.length <= maxLength ?: Int.MAX_VALUE) {
-                    onValueChange(it)
-                }
-            },
+            onValueChange = onValueChange,
             modifier = Modifier.fillMaxWidth(),
             label = { Text(text = label, fontWeight = FontWeight.Light) },
             placeholder = { Text(text = placeholder) },
@@ -77,32 +77,32 @@ fun EmeraldTextField(
             colors = colors
         )
         Box(modifier = Modifier.fillMaxWidth()) {
-            if (state.error != null || helperText.isNotBlank()) {
-                Text(
-                    modifier = Modifier
-                        .padding(start = EmeraldDimens.PaddingErrorMessageTextField)
-                        .align(Alignment.TopStart),
-                    text = state.error ?: helperText,
-                    style = MaterialTheme.typography.overline.copy(
-                        color = getColorByErrorState(state.error)
-                    )
-                )
+            if ((state.error != null) or helperTextStart.isNotBlank()) {
+                TextFieldHelperText(alignment = Alignment.TopStart, text = helperTextStart, error = state.error)
             }
-            if (maxLength != null) {
-                Text(
-                    modifier = Modifier
-                        .padding(end = EmeraldDimens.PaddingErrorMessageTextField)
-                        .align(Alignment.TopEnd),
-                    text = "${state.text.text.length}/$maxLength",
-                    style = MaterialTheme.typography.overline.copy(
-                        color = getColorByErrorState(state.error)
-                    )
-                )
+            if (helperTextEnd.isNotBlank()) {
+                TextFieldHelperText(alignment = Alignment.TopEnd, text = helperTextStart, error = state.error)
             }
-
         }
 
     }
+}
+
+@Composable
+private fun BoxScope.TextFieldHelperText(
+    alignment: Alignment,
+    text: String,
+    error: String?,
+) {
+    Text(
+        modifier = Modifier
+            .padding(start = EmeraldDimens.PaddingErrorMessageTextField)
+            .align(alignment),
+        text = error ?: text,
+        style = MaterialTheme.typography.overline.copy(
+            color = getColorByErrorState(error)
+        )
+    )
 }
 
 private fun getColorByErrorState(error: String?): Color {
