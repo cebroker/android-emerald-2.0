@@ -25,19 +25,18 @@ fun TextFieldScreenSample() {
         mutableStateOf(EmeraldTextFieldState())
     }
 
-    val onValueChangedEmpty = { text: TextFieldValue ->
+    val onValueChangedEmpty = { text: String ->
         textStateEmpty.value = textStateEmpty.value.copy(text = text)
     }
 
-    val onValueChangedCorrect = { text: TextFieldValue ->
+    val onValueChangedCorrect = { text: String ->
         textStateCorrect.value = textStateCorrect.value.copy(text = text)
     }
 
-    val onValueChangedError = { text: TextFieldValue ->
+    val onValueChangedError = { text: String ->
         textStateError.value = EmeraldTextFieldState(text = text)
-        if (text.text.length > 5) {
-            textStateError.value =
-                textStateError.value.copy(text = text, error = "This is an error message")
+        if (text.length > 5) {
+            textStateError.value = textStateError.value.copy(text = text, error = "This is an error message")
         }
     }
 
@@ -59,8 +58,7 @@ fun TextFieldScreenSample() {
             state = textStateError.value,
             onValueChange = onValueChangedError,
             label = "With error message",
-            maxLength = 10,
-            helperText = "With max length",
+            helperTextStart = "With max length",
             modifier = Modifier.padding(top = 10.dp)
         )
     }
