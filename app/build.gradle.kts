@@ -1,6 +1,10 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("maven-publish")
+}
+apply {
+    from("../install.gradle.kts")
 }
 
 android {

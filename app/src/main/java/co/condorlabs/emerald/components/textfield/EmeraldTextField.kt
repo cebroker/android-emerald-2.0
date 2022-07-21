@@ -1,6 +1,5 @@
 package co.condorlabs.emerald.components.textfield
 
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -22,9 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.utils.Empty
 import co.condorlabs.emerald.theme.EmeraldColors
 import co.condorlabs.emerald.theme.EmeraldDimens
@@ -52,13 +49,11 @@ fun EmeraldTextField(
     shape: Shape = MaterialTheme.shapes.small,
     colors: TextFieldColors = emeraldTextFieldColors()
 ) {
-    Column(modifier = modifier
-        .animateContentSize()
-        .padding(20.dp)) {
+    Column {
         OutlinedTextField(
             value = state.text,
             onValueChange = onValueChange,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = modifier.fillMaxWidth(),
             label = { Text(text = label, fontWeight = FontWeight.Light) },
             placeholder = { Text(text = placeholder) },
             enabled = enabled,

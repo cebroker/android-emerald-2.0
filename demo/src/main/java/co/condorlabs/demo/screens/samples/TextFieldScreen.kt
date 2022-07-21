@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
@@ -36,8 +35,7 @@ fun TextFieldScreenSample() {
     val onValueChangedError = { text: String ->
         textStateError.value = EmeraldTextFieldState(text = text)
         if (text.length > 5) {
-            textStateError.value =
-                textStateError.value.copy(text = text, error = "This is an error message")
+            textStateError.value = textStateError.value.copy(text = text, error = "This is an error message")
         }
     }
 
@@ -59,6 +57,7 @@ fun TextFieldScreenSample() {
             state = textStateError.value,
             onValueChange = onValueChangedError,
             label = "With error message",
+            helperTextStart = "With max length",
             modifier = Modifier.padding(top = 10.dp)
         )
     }
