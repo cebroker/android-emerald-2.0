@@ -7,28 +7,30 @@ val sourcesJar by tasks.creating(Jar::class) {
 
 configure<PublishingExtension> {
     publications {
-        create<MavenPublication>(LibraryConstants.PUBLICATION_NAME) {
-            run {
-                groupId = LibraryConstants.ARTIFACT_GROUP
-                artifactId = LibraryConstants.ARTIFACT_NAME
-                version = LibraryConstants.VERSION
-                from(components.findByName("android"))
-                artifact(sourcesJar)
-                artifact("$buildDir/outputs/aar/app-release.aar")
-                pom {
-                    name.set(LibraryConstants.ARTIFACT_NAME)
-                    description.set(LibraryConstants.POM_DESCRIPTION)
-                    url.set(LibraryConstants.POM_URL)
-                    licenses {
-                        license {
-                            name.set(LibraryConstants.LICENSE_NAME)
-                            url.set(LibraryConstants.LICENSE_URL)
+        with(PublishConstants) {
+            create<MavenPublication>(PUBLICATION_NAME) {
+                run {
+                    groupId = ARTIFACT_GROUP
+                    artifactId = ARTIFACT_NAME
+                    version = VERSION
+                    from(components.findByName("android"))
+                    artifact(sourcesJar)
+                    artifact("$buildDir/outputs/aar/app-release.aar")
+                    pom {
+                        name.set(ARTIFACT_NAME)
+                        description.set(POM_DESCRIPTION)
+                        url.set(POM_URL)
+                        licenses {
+                            license {
+                                name.set(LICENSE_NAME)
+                                url.set(LICENSE_URL)
+                            }
                         }
-                    }
-                    developers {
-                        developer {
-                            id.set(LibraryConstants.DEVELOPER)
-                            name.set(LibraryConstants.DEVELOPER_NAME)
+                        developers {
+                            developer {
+                                id.set(DEVELOPER)
+                                name.set(DEVELOPER_NAME)
+                            }
                         }
                     }
                 }
