@@ -7,6 +7,6 @@ object PublishConstants {
     const val POM_DESCRIPTION = "Some utils to log events to multiple sources"
     const val LICENSE_NAME = "MIT"
     const val LICENSE_URL = "https://opensource.org/licenses/mit-license.php"
-    const val DEVELOPER = "bsarias"
-    const val DEVELOPER_NAME = "Brayan Arias"
+    const val DEVELOPER = "condorlabdevs"
+    const val DEVELOPER_NAME = "Condor Labs"
 }
