@@ -35,5 +35,4 @@ object Dependencies {
 object BuildPlugins {
     val android by lazy { "com.android.tools.build:gradle:${Versions.gradlePlugin}" }
     val kotlin by lazy { "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}" }
-    val bintray by lazy { "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5" }
 }
