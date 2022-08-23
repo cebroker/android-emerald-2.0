@@ -19,6 +19,7 @@ import co.condorlabs.emerald.theme.EmeraldColors
 fun EmeraldRadioGroup(
     modifier: Modifier,
     title: String = Empty,
+    error: String = Empty,
     items: List<EmeraldRadioButtonState>,
     selection: EmeraldRadioButtonState,
     onItemClick: ((EmeraldRadioButtonState) -> Unit),
@@ -47,6 +48,10 @@ fun EmeraldRadioGroup(
                 },
             )
             Spacer(modifier = Modifier.size(10.dp))
+        }
+
+        if (error.isNotEmpty()) {
+            EmeraldText(text = error, style = EmeraldTextStyle.Danger, modifier = Modifier.padding(bottom = 5.dp))
         }
     }
 }
