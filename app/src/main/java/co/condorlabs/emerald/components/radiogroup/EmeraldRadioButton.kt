@@ -38,6 +38,7 @@ fun EmeraldRadioButton(
     val isPressed by interactionSource.collectIsPressedAsState()
 
     Button(
+        enabled = enabled,
         border = getButtonBorder(
             enabled = enabled,
             selected = selection.id == state.id && selection.value,

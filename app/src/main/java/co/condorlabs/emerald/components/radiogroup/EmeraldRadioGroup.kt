@@ -3,18 +3,22 @@ package co.condorlabs.emerald.components.radiogroup
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.RadioButtonColors
 import androidx.compose.material.RadioButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import co.condorlabs.emerald.components.text.EmeraldText
 import co.condorlabs.emerald.components.text.EmeraldTextStyle
+import co.condorlabs.emerald.components.utils.Empty
 import co.condorlabs.emerald.theme.EmeraldColors
 
 @Composable
 fun EmeraldRadioGroup(
     modifier: Modifier,
+    title: String = Empty,
     items: List<EmeraldRadioButtonState>,
     selection: EmeraldRadioButtonState,
     onItemClick: ((EmeraldRadioButtonState) -> Unit),
@@ -26,6 +30,10 @@ fun EmeraldRadioGroup(
     ),
 ) {
     Column(modifier = modifier) {
+        if (title.isNotEmpty()) {
+            EmeraldText(text = title, style = EmeraldTextStyle.SectionBody, modifier = Modifier.padding(bottom = 5.dp))
+        }
+
         items.forEach { item ->
             EmeraldRadioButton(
                 state = item,
@@ -40,13 +48,5 @@ fun EmeraldRadioGroup(
             )
             Spacer(modifier = Modifier.size(10.dp))
         }
-        /*Box(modifier = Modifier.fillMaxWidth()) {
-            if ((state.error != null) or helperTextStart.isNotBlank()) {
-                TextFieldHelperText(alignment = Alignment.TopStart, text = helperTextStart, error = state.error)
-            }
-            if (helperTextEnd.isNotBlank()) {
-                TextFieldHelperText(alignment = Alignment.TopEnd, text = helperTextStart, error = state.error)
-            }
-        }*/
     }
 }
