@@ -1,7 +1,7 @@
 object Versions {
     const val gradlePlugin = "7.0.0"
-    const val kotlin = "1.5.10"
-    const val compose = "1.0.0"
+    const val kotlin = "1.6.10"
+    const val compose = "1.1.0"
     const val jUnit = "4.13.2"
     const val extJUnit = "1.1.3"
     const val espressoCore = "3.4.0"
@@ -28,6 +28,7 @@ object Dependencies {
         val extJUnit by lazy { "androidx.test.ext:junit:${Versions.extJUnit}" }
         val espressoCore by lazy { "androidx.test.espresso:espresso-core:${Versions.espressoCore}" }
         val compose by lazy { "androidx.compose.ui:ui-test-junit4:${Versions.compose}" }
+        val composeManifest by lazy { "androidx.compose.ui:ui-test-manifest:${Versions.compose}" }
     }
 
 }

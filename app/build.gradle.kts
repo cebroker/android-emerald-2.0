@@ -39,6 +39,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.compose
     }
+    packagingOptions {
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
+    }
 }
 
 dependencies {
@@ -50,4 +54,8 @@ dependencies {
             strictly("1.0.0-beta09")
         }
     }
+
+    androidTestImplementation("androidx.compose.ui:ui-test:1.1.0")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.1.0")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.1.0")
 }
