@@ -19,11 +19,6 @@ open class Page {
         }
         return page
     }
-
-    fun wait(seconds: Int): Page {
-        Thread.sleep(seconds * 1000L)
-        return this
-    }
 }
 
 val Any?.isNull: Boolean get() = this == null
