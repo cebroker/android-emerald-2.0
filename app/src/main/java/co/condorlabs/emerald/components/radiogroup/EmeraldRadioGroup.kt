@@ -3,6 +3,7 @@ package co.condorlabs.emerald.components.radiogroup
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.RadioButtonColors
@@ -21,7 +22,6 @@ fun EmeraldRadioGroup(
     title: String = Empty,
     error: String = Empty,
     items: List<EmeraldRadioButtonState>,
-    selection: EmeraldRadioButtonState,
     onItemClick: ((EmeraldRadioButtonState) -> Unit),
     enabled: Boolean = true,
     textStyle: EmeraldTextStyle = EmeraldTextStyle.SectionBody,
@@ -38,8 +38,7 @@ fun EmeraldRadioGroup(
         items.forEach { item ->
             EmeraldRadioButton(
                 state = item,
-                selection = selection,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().height(70.dp),
                 textStyle = textStyle,
                 enabled = enabled,
                 colors = colors,
@@ -47,7 +46,6 @@ fun EmeraldRadioGroup(
                     onItemClick(item)
                 },
             )
-            Spacer(modifier = Modifier.size(10.dp))
         }
 
         if (error.isNotEmpty()) {

@@ -1,18 +1,9 @@
 package co.condorlabs.emerald.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-
-private val DarkColorPalette = darkColors(
-    primary = EmeraldColors.ColorPrimary,
-    primaryVariant = EmeraldColors.ColorPrimaryDark,
-    secondary = EmeraldColors.ColorAccent,
-    background = Color.White
-)
 
 private val LightColorPalette = lightColors(
     primary = EmeraldColors.ColorPrimary,
@@ -22,14 +13,9 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun EmeraldTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
+fun EmeraldTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colors = colors,
+        colors = LightColorPalette,
         typography = EmeraldTypography.TextTypography,
         content = content
     )

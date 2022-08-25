@@ -8,11 +8,14 @@ object Versions {
     const val activityCompose = "1.3.0"
     const val material = "1.4.0"
     const val navigation = "2.4.0-alpha05"
+    const val testCore = "1.4.0"
+    const val kotlinReflect = "1.7.10"
 }
 
 object Dependencies {
 
     val kotlin by lazy { "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}" }
+    val kotlinReflect by lazy {"org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinReflect}"}
     val material by lazy { "com.google.android.material:material:${Versions.material}" }
 
     object Compose {
@@ -29,8 +32,10 @@ object Dependencies {
         val espressoCore by lazy { "androidx.test.espresso:espresso-core:${Versions.espressoCore}" }
         val compose by lazy { "androidx.compose.ui:ui-test-junit4:${Versions.compose}" }
         val composeManifest by lazy { "androidx.compose.ui:ui-test-manifest:${Versions.compose}" }
+        val composeUITest by lazy { "androidx.compose.ui:ui-test:${Versions.compose}" }
+        val testCore by lazy { "androidx.test:core:${Versions.testCore}" }
+        val testCoreKtx by lazy { "androidx.test:core-ktx:${Versions.testCore}" }
     }
-
 }
 
 object BuildPlugins {

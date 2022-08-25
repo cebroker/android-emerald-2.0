@@ -55,7 +55,12 @@ dependencies {
         }
     }
 
-    androidTestImplementation("androidx.compose.ui:ui-test:1.1.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.1.0")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.1.0")
+    androidTestImplementation(Dependencies.Test.composeUITest)
+    androidTestImplementation(Dependencies.Test.compose)
+    debugImplementation(Dependencies.Test.composeManifest)
+
+    androidTestImplementation(Dependencies.Test.testCore)
+    androidTestImplementation(Dependencies.Test.testCoreKtx)
+
+    implementation(Dependencies.kotlinReflect)
 }

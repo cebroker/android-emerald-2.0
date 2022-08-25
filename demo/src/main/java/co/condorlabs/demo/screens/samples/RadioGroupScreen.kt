@@ -1,11 +1,13 @@
 package co.condorlabs.demo.screens.samples
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.toMutableStateList
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -15,24 +17,23 @@ import co.condorlabs.emerald.components.radiogroup.EmeraldRadioGroup
 @Preview
 @Composable
 fun RadioGroupScreenSample() {
-    val selectable = mutableListOf(EmeraldRadioButtonState(0, false, "Yes"),
+    val selectables = mutableListOf(EmeraldRadioButtonState(0, true, "Yes"),
         EmeraldRadioButtonState(1, false, "No"))
 
-    val currentSelection = remember { mutableStateOf(selectable.first()) }
+    val selectable = remember { selectables.toMutableStateList() }
 
-    Column {
+
+    Column{
         EmeraldRadioGroup(
             title = "Any exclusions?",
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
             items = selectable,
-            selection = currentSelection.value,
             onItemClick = { clickedItem ->
-                val newState = clickedItem.copy(value = !clickedItem.value)
-                val index = selectable.indexOfFirst { it.id == clickedItem.id }
-                selectable[index] = newState
-                currentSelection.value = newState
+                selectables.forEachIndexed { index, emeraldRadioButtonState ->
+                    selectable[index] = emeraldRadioButtonState.copy(value = clickedItem.id == emeraldRadioButtonState.id)
+                }
             }
         )
 
@@ -43,29 +44,25 @@ fun RadioGroupScreenSample() {
                 .padding(16.dp)
                 .fillMaxWidth(),
             items = selectable,
-            selection = currentSelection.value,
             onItemClick = { clickedItem ->
                 val newState = clickedItem.copy(value = !clickedItem.value)
                 val index = selectable.indexOfFirst { it.id == clickedItem.id }
                 selectable[index] = newState
-                currentSelection.value = newState
             }
         )
 
         EmeraldRadioGroup(
-            title = "Message Error",
+            title = "Disable Error",
             error = "Disabled",
             enabled = false,
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
             items = selectable,
-            selection = currentSelection.value,
             onItemClick = { clickedItem ->
                 val newState = clickedItem.copy(value = !clickedItem.value)
                 val index = selectable.indexOfFirst { it.id == clickedItem.id }
                 selectable[index] = newState
-                currentSelection.value = newState
             }
         )
     }
