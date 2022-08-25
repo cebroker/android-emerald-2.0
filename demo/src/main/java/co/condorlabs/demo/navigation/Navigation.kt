@@ -6,9 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import co.condorlabs.demo.drawer.NavDrawerItem
 import co.condorlabs.demo.screens.samples.ButtonScreenSample
+import co.condorlabs.demo.screens.samples.RadioGroupScreenSample
 import co.condorlabs.demo.screens.samples.TextFieldScreenSample
 import co.condorlabs.demo.screens.samples.TextScreenSample
-
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -21,6 +21,9 @@ fun Navigation(navController: NavHostController) {
         }
         composable(NavDrawerItem.TextField.route) {
             TextFieldScreenSample()
+        }
+        composable(NavDrawerItem.RadioGroup.route) {
+            RadioGroupScreenSample()
         }
     }
 }

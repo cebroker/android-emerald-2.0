@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.condorlabs.emerald">
+
+    <application>
+        <activity android:name="co.condorlabs.emerald.BaseTestingActivity"
+            android:exported="true"/>
+    </application>
 </manifest>

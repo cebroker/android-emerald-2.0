@@ -31,6 +31,7 @@ fun Drawer(scope: CoroutineScope, scaffoldState: ScaffoldState, navController: N
         NavDrawerItem.Text,
         NavDrawerItem.Button,
         NavDrawerItem.TextField,
+        NavDrawerItem.RadioGroup
     )
     Column {
         Image(

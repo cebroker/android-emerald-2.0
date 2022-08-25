@@ -50,5 +50,4 @@ dependencies {
 
     androidTestImplementation(Dependencies.Test.extJUnit)
     androidTestImplementation(Dependencies.Test.espressoCore)
-    androidTestImplementation(Dependencies.Test.compose)
 }

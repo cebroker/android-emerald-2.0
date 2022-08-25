@@ -18,6 +18,7 @@ sealed class EmeraldTextStyle(
     object SubTitle : EmeraldTextStyle(EmeraldTypography.TextTypography.subtitle1, EmeraldColors.SubtitleColor)
     object Body : EmeraldTextStyle(EmeraldTypography.TextTypography.body1, EmeraldColors.LabelColor)
     object SectionBody : EmeraldTextStyle(EmeraldTypography.TextTypography.body1, EmeraldColors.TextColor)
+    object Danger : EmeraldTextStyle(EmeraldTypography.TextTypography.body1, EmeraldColors.DangerColor)
     object Link : EmeraldTextStyle(EmeraldTypography.TextTypography.body2, EmeraldColors.InfoColor)
     object BodySmall : EmeraldTextStyle(EmeraldTypography.TextTypography.caption, EmeraldColors.SubtitleColor)
 
