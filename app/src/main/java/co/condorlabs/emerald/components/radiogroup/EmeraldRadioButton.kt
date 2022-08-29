@@ -12,13 +12,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
-import co.condorlabs.emerald.components.button.EmeraldButtonStyle
 import co.condorlabs.emerald.components.text.EmeraldTextStyle
 import co.condorlabs.emerald.theme.EmeraldColors
-import co.condorlabs.emerald.theme.EmeraldDimens
 
 @Composable
 fun EmeraldRadioButton(
@@ -55,20 +52,3 @@ fun EmeraldRadioButton(
         )
     }
 }
-
-@Composable
-private fun getButtonBorder(
-    enabled: Boolean,
-    selected: Boolean,
-    emeraldButtonStyle: EmeraldButtonStyle
-) = if (enabled && selected) emeraldButtonStyle.strokeWidth else BorderStroke(
-    EmeraldDimens.DefaultWidthToBorderStroke,
-    Color.DarkGray.copy(alpha = DefaultAlphaDisable)
-)
-
-private fun getBackgroundColor(
-    isPressed: Boolean,
-    emeraldButtonStyle: EmeraldButtonStyle
-) = if (isPressed) emeraldButtonStyle.rippleColor else emeraldButtonStyle.backgroundColor
-
-private const val DefaultAlphaDisable = 0.12f

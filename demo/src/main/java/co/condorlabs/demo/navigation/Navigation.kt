@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import co.condorlabs.demo.drawer.NavDrawerItem
 import co.condorlabs.demo.screens.samples.ButtonScreenSample
+import co.condorlabs.demo.screens.samples.CheckboxScreenSample
 import co.condorlabs.demo.screens.samples.RadioGroupScreenSample
 import co.condorlabs.demo.screens.samples.TextFieldScreenSample
 import co.condorlabs.demo.screens.samples.TextScreenSample
@@ -24,6 +25,9 @@ fun Navigation(navController: NavHostController) {
         }
         composable(NavDrawerItem.RadioGroup.route) {
             RadioGroupScreenSample()
+        }
+        composable(NavDrawerItem.CheckboxGroup.route) {
+            CheckboxScreenSample()
         }
     }
 }

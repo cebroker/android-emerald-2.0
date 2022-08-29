@@ -5,4 +5,5 @@ sealed class NavDrawerItem(var route: String, var title: String) {
     object Button : NavDrawerItem("button", "Button")
     object TextField : NavDrawerItem("text-field", "Text Field")
     object RadioGroup: NavDrawerItem("radio-group", "Radio Group")
+    object CheckboxGroup: NavDrawerItem("checkbox-group", "Checkbox Group")
 }
