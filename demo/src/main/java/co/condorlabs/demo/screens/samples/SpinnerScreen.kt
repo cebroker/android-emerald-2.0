@@ -20,13 +20,13 @@ import co.condorlabs.emerald.theme.EmeraldColors
 fun SpinnerScreenSample() {
 
     val options =
-        mutableListOf(EmeraldSpinnerState("Select"),
-            EmeraldSpinnerState("Alabama"),
-            EmeraldSpinnerState("Alaska"),
-            EmeraldSpinnerState("Arizona"))
+        mutableListOf(EmeraldSpinnerState("0","Select"),
+            EmeraldSpinnerState("1","Alabama"),
+            EmeraldSpinnerState("2","Alaska"),
+            EmeraldSpinnerState("3","Arizona"))
     val optionsR = remember { options }
 
-    var selectedOptionText by remember { mutableStateOf(EmeraldSpinnerState("Select")) }
+    var selectedOptionText by remember { mutableStateOf(EmeraldSpinnerState("0","Select")) }
 
     var error = ""
     val errors = remember { mutableStateOf(error) }

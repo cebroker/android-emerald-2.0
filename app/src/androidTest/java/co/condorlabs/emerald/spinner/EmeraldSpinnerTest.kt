@@ -19,9 +19,9 @@ class EmeraldSpinnerTest {
 
     @Test
     fun givenItemListWhenTheViewIsCreatedAndPressTheSpinnerThenShouldShowTheListItems() {
-        val items = mutableListOf(EmeraldSpinnerState("Select"),
-            EmeraldSpinnerState("Test"),
-            EmeraldSpinnerState("Test2"))
+        val items = mutableListOf(EmeraldSpinnerState("0","Select"),
+            EmeraldSpinnerState("1","Test"),
+            EmeraldSpinnerState("2","Test2"))
 
         on<EmeraldSpinnerPage>(composeRule)
             .launchView(
@@ -37,9 +37,9 @@ class EmeraldSpinnerTest {
 
     @Test
     fun givenItemListWhenTheViewIsCreatedAndTheSpinnerIsDisabledThenNotShouldShowTheListItems() {
-        val items = mutableListOf(EmeraldSpinnerState("Select"),
-            EmeraldSpinnerState("Test"),
-            EmeraldSpinnerState("Test2"))
+        val items = mutableListOf(EmeraldSpinnerState("0","Select"),
+            EmeraldSpinnerState("1","Test"),
+            EmeraldSpinnerState("2","Test2"))
 
         on<EmeraldSpinnerPage>(composeRule)
             .launchView(
@@ -53,10 +53,10 @@ class EmeraldSpinnerTest {
     }
 
     @Test
-    fun givenItemListWhenTheViewIsCreatedAndTheSpinnerThenShouldErrorMessage() {
-        val items = mutableListOf(EmeraldSpinnerState("Select"),
-            EmeraldSpinnerState("Test"),
-            EmeraldSpinnerState("Test2"))
+    fun givenItemListWhenTheViewIsCreatedThenShouldTheSpinnerWithErrorMessage() {
+        val items = mutableListOf(EmeraldSpinnerState("0","Select"),
+            EmeraldSpinnerState("1","Test"),
+            EmeraldSpinnerState("2","Test2"))
 
         on<EmeraldSpinnerPage>(composeRule)
             .launchView(
