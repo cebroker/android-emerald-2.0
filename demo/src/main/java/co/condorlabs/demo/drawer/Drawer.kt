@@ -32,7 +32,8 @@ fun Drawer(scope: CoroutineScope, scaffoldState: ScaffoldState, navController: N
         NavDrawerItem.Button,
         NavDrawerItem.TextField,
         NavDrawerItem.RadioGroup,
-        NavDrawerItem.CheckboxGroup
+        NavDrawerItem.CheckboxGroup,
+        NavDrawerItem.Spinner
     )
     Column {
         Image(
