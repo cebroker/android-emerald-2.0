@@ -8,6 +8,7 @@ import co.condorlabs.demo.drawer.NavDrawerItem
 import co.condorlabs.demo.screens.samples.ButtonScreenSample
 import co.condorlabs.demo.screens.samples.CheckboxScreenSample
 import co.condorlabs.demo.screens.samples.RadioGroupScreenSample
+import co.condorlabs.demo.screens.samples.SpinnerScreenSample
 import co.condorlabs.demo.screens.samples.TextFieldScreenSample
 import co.condorlabs.demo.screens.samples.TextScreenSample
 
@@ -28,6 +29,9 @@ fun Navigation(navController: NavHostController) {
         }
         composable(NavDrawerItem.CheckboxGroup.route) {
             CheckboxScreenSample()
+        }
+        composable(NavDrawerItem.Spinner.route) {
+            SpinnerScreenSample()
         }
     }
 }
