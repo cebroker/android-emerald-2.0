@@ -28,7 +28,7 @@ import co.condorlabs.emerald.theme.EmeraldColors
 import co.condorlabs.emerald.theme.EmeraldDimens
 
 @Composable
-fun EmeraldPasswordTextField(
+fun EmeraldEmailTextField(
     state: EmeraldTextFieldState,
     onValueChange: (String) -> Unit,
     label: String,
