@@ -1,13 +1,17 @@
 package co.condorlabs.demo.screens.samples
 
+import android.util.Patterns
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import co.condorlabs.emerald.components.textfield.EmeraldPasswordTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
 
@@ -21,6 +25,10 @@ fun TextFieldScreenSample() {
         mutableStateOf(EmeraldTextFieldState())
     }
 
+    val textStateEmail = remember {
+        mutableStateOf(EmeraldTextFieldState())
+    }
+
     val textStateError = remember {
         mutableStateOf(EmeraldTextFieldState())
     }
@@ -31,6 +39,14 @@ fun TextFieldScreenSample() {
 
     val onValueChangedCorrect = { text: String ->
         textStateCorrect.value = textStateCorrect.value.copy(text = text)
+    }
+
+    val onValueChangedEmail = { text: String ->
+        if (!text.validateEmail()) {
+            textStateEmail.value = textStateEmail.value.copy(text = text, error = "Email is invalid")
+        } else {
+            textStateEmail.value = textStateEmail.value.copy(text = text, error = null)
+        }
     }
 
     val onValueChangedError = { text: String ->
@@ -54,6 +70,13 @@ fun TextFieldScreenSample() {
             placeholder = "With placeholder",
             modifier = Modifier.padding(top = 10.dp)
         )
+        EmeraldPasswordTextField(
+            state = textStateEmail.value,
+            onValueChange = onValueChangedEmail,
+            label = "Email",
+            placeholder = "With email",
+            modifier = Modifier.padding(top = 10.dp)
+        )
         EmeraldTextField(
             state = textStateError.value,
             onValueChange = onValueChangedError,
@@ -63,3 +86,5 @@ fun TextFieldScreenSample() {
         )
     }
 }
+
+private fun String.validateEmail() : Boolean = Patterns.EMAIL_ADDRESS.matcher(this).matches()
