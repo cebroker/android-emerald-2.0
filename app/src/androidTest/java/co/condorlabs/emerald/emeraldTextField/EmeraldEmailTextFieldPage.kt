@@ -9,7 +9,7 @@ import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
 import co.condorlabs.emerald.theme.EmeraldTheme
 import co.condorlabs.emerald.uiteststubs.base.Page
 
-class EmeraldPasswordTextFieldPage(private val composeRule: ComposeContentTestRule) : Page() {
+class EmeraldEmailTextFieldPage(private val composeRule: ComposeContentTestRule) : Page() {
 
     fun launchView(
         state: EmeraldTextFieldState,

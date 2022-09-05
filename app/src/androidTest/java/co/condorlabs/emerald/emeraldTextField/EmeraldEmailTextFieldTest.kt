@@ -12,14 +12,14 @@ import org.junit.runner.RunWith
 
 @ExperimentalTestApi
 @RunWith(AndroidJUnit4::class)
-class EmeraldPasswordTextFieldTest {
+class EmeraldEmailTextFieldTest {
 
     @get:Rule
     val composeRule = createAndroidComposeRule<BaseTestingActivity>()
 
     @Test
     fun givenInvalidEmailWhenTheViewIsCreatedThenShouldShowMessageError() {
-        on<EmeraldPasswordTextFieldPage>(composeRule)
+        on<EmeraldEmailTextFieldPage>(composeRule)
             .launchView(
                 state = EmeraldTextFieldState(text = "email@.", error = "Email is invalid"),
                 label = "Email invalid"
@@ -31,7 +31,7 @@ class EmeraldPasswordTextFieldTest {
 
     @Test
     fun givenValidEmailWhenTheViewIsCreatedThenShouldShowEmailValid() {
-        on<EmeraldPasswordTextFieldPage>(composeRule)
+        on<EmeraldEmailTextFieldPage>(composeRule)
             .launchView(
                 state = EmeraldTextFieldState(text = "email@ec.com"),
                 label = "Email valid"
