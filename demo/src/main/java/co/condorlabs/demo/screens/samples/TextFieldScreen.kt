@@ -3,12 +3,13 @@ package co.condorlabs.demo.screens.samples
 import android.util.Patterns
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import co.condorlabs.emerald.components.textfield.EmeraldEmailTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
 
@@ -67,9 +68,10 @@ fun TextFieldScreenSample() {
             placeholder = "With placeholder",
             modifier = Modifier.padding(top = 10.dp)
         )
-        EmeraldEmailTextField(
+        EmeraldTextField(
             state = textStateEmail.value,
             onValueChange = onValueChangedEmail,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             label = "Email",
             placeholder = "With email",
             modifier = Modifier.padding(top = 10.dp)

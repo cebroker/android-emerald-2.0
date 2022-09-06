@@ -1,9 +1,11 @@
 package co.condorlabs.emerald.emeraldTextField
 
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.onNodeWithText
-import co.condorlabs.emerald.components.textfield.EmeraldEmailTextField
+import androidx.compose.ui.text.input.KeyboardType
+import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
 import co.condorlabs.emerald.theme.EmeraldTheme
 import co.condorlabs.emerald.uiteststubs.base.Page
@@ -16,9 +18,10 @@ class EmeraldEmailTextFieldPage(private val composeRule: ComposeContentTestRule)
     ) = apply {
         composeRule.setContent {
             EmeraldTheme {
-                EmeraldEmailTextField(
+                EmeraldTextField(
                     state = state,
                     onValueChange = {},
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                     label = label)
             }
         }
