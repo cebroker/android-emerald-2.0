@@ -23,7 +23,7 @@ class EmeraldTextFieldPassword {
         Page.on<EmeraldTextFieldPasswordPage>(composeRule)
             .launchView(
                 state = EmeraldTextFieldState(text = "Password1234"),
-                label = "Show Password"
+                label = "Show password"
             )
             .validIfShowPasswordLabelIsDisplayed()
             .onClickIconVisibilityOn()
