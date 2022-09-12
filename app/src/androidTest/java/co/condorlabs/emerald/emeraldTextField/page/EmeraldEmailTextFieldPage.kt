@@ -1,4 +1,4 @@
-package co.condorlabs.emerald.emeraldTextField
+package co.condorlabs.emerald.emeraldTextField.page
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.test.assertIsDisplayed
