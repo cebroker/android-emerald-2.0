@@ -49,6 +49,7 @@ dependencies {
     api(Dependencies.material)
     api(Dependencies.Compose.ui)
     api(Dependencies.Compose.material)
+    api(Dependencies.Compose.icons)
     api(Dependencies.Compose.uiTooling) {
         version {
             strictly("1.0.0-beta09")

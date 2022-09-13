@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
+import co.condorlabs.emerald.components.textfield.EmeraldTextFieldPassword
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
 
 @Composable
@@ -20,6 +21,10 @@ fun TextFieldScreenSample() {
     }
 
     val textStateCorrect = remember {
+        mutableStateOf(EmeraldTextFieldState())
+    }
+
+    val textStatePassword = remember {
         mutableStateOf(EmeraldTextFieldState())
     }
 
@@ -37,6 +42,10 @@ fun TextFieldScreenSample() {
 
     val onValueChangedCorrect = { text: String ->
         textStateCorrect.value = textStateCorrect.value.copy(text = text)
+    }
+
+    val onValueChangedPassword = { text: String ->
+        textStatePassword.value = textStatePassword.value.copy(text = text)
     }
 
     val onValueChangedEmail = { text: String ->
@@ -81,6 +90,12 @@ fun TextFieldScreenSample() {
             onValueChange = onValueChangedError,
             label = "With error message",
             helperTextStart = "With max length",
+            modifier = Modifier.padding(top = 10.dp)
+        )
+        EmeraldTextFieldPassword(
+            state = textStatePassword.value,
+            onValueChange = onValueChangedPassword,
+            label = "Password",
             modifier = Modifier.padding(top = 10.dp)
         )
     }
