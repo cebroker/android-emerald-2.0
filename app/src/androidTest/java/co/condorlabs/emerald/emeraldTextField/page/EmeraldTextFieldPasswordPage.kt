@@ -28,11 +28,11 @@ class EmeraldTextFieldPasswordPage(private val composeRule: ComposeContentTestRu
         }
     }
 
-    fun validIfShowPasswordLabelIsDisplayed() = apply {
+    fun validateIfShowPasswordLabelIsDisplayed() = apply {
         composeRule.onNodeWithText("Show password").assertIsDisplayed()
     }
 
-    fun validIfErrorPasswordLabelIsDisplayed() = apply {
+    fun validateIfErrorPasswordLabelIsDisplayed() = apply {
         composeRule.onNodeWithText("Error password").assertIsDisplayed()
     }
 
@@ -40,11 +40,11 @@ class EmeraldTextFieldPasswordPage(private val composeRule: ComposeContentTestRu
         composeRule.onNodeWithTag("PasswordIcon").performClick()
     }
 
-    fun validIfPasswordIsDisplayed() = apply {
+    fun validateIfPasswordIsDisplayed() = apply {
         composeRule.onNodeWithText("Password1234").assertIsDisplayed()
     }
 
-    fun validIfErrorPasswordIsDisplayed() = apply {
+    fun validateIfErrorPasswordIsDisplayed() = apply {
         composeRule.onNodeWithText("Password invalid").assertIsDisplayed()
     }
 }

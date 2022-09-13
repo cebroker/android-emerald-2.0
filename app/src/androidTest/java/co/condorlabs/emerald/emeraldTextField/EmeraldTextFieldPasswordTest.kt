@@ -13,7 +13,7 @@ import org.junit.runner.RunWith
 
 @ExperimentalTestApi
 @RunWith(AndroidJUnit4::class)
-class EmeraldTextFieldPassword {
+class EmeraldTextFieldPasswordTest {
 
     @get:Rule
     val composeRule = createAndroidComposeRule<BaseTestingActivity>()
@@ -25,9 +25,9 @@ class EmeraldTextFieldPassword {
                 state = EmeraldTextFieldState(text = "Password1234"),
                 label = "Show password"
             )
-            .validIfShowPasswordLabelIsDisplayed()
+            .validateIfShowPasswordLabelIsDisplayed()
             .onClickIconVisibilityOn()
-            .validIfPasswordIsDisplayed()
+            .validateIfPasswordIsDisplayed()
     }
 
     @Test
@@ -37,7 +37,7 @@ class EmeraldTextFieldPassword {
                 state = EmeraldTextFieldState(text = "", error = "Password invalid"),
                 label = "Error password"
             )
-            .validIfErrorPasswordLabelIsDisplayed()
-            .validIfErrorPasswordIsDisplayed()
+            .validateIfErrorPasswordLabelIsDisplayed()
+            .validateIfErrorPasswordIsDisplayed()
     }
 }
