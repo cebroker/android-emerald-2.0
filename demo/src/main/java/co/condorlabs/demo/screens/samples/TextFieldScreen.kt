@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import co.condorlabs.emerald.components.datetextfield.EmeraldDateTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldPassword
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
@@ -98,6 +99,10 @@ fun TextFieldScreenSample() {
             label = "Password",
             modifier = Modifier.padding(top = 10.dp)
         )
+
+        EmeraldDateTextField(onValueChange = {
+
+        }, label = "DatePicker")
     }
 }
 
