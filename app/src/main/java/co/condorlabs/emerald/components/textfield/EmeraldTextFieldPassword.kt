@@ -81,8 +81,7 @@ fun EmeraldTextFieldPassword(
             IconButton(
                 onClick = {
                     passwordVisible.value = !passwordVisible.value
-                },
-                modifier = modifier.testTag(stringResource(id = R.string.test_tag_password))
+                }
             ){
                 Icon(imageVector  = image, description)
             }
