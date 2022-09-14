@@ -5,6 +5,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import co.condorlabs.emerald.BaseTestingActivity
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
+import co.condorlabs.emerald.emeraldTextField.page.EmeraldEmailTextFieldPage
 import co.condorlabs.emerald.uiteststubs.base.Page.Companion.on
 import org.junit.Rule
 import org.junit.Test

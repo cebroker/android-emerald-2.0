@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="paddig_top_text_field">10dp</dimen>
+</resources>
