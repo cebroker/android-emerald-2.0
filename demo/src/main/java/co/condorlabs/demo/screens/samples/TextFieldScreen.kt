@@ -14,6 +14,11 @@ import co.condorlabs.emerald.components.datetextfield.EmeraldDateTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldPassword
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun TextFieldScreenSample() {
@@ -26,6 +31,10 @@ fun TextFieldScreenSample() {
     }
 
     val textStatePassword = remember {
+        mutableStateOf(EmeraldTextFieldState())
+    }
+
+    val textStateDate = remember {
         mutableStateOf(EmeraldTextFieldState())
     }
 
@@ -60,9 +69,24 @@ fun TextFieldScreenSample() {
     val onValueChangedError = { text: String ->
         textStateError.value = EmeraldTextFieldState(text = text)
         if (text.length > 5) {
-            textStateError.value = textStateError.value.copy(text = text, error = "This is an error message")
+            textStateError.value =
+                textStateError.value.copy(text = text, error = "This is an error message")
         }
     }
+
+    val onValueChangedDate = { text: String ->
+        textStateDate.value = EmeraldTextFieldState(text = text)
+    }
+
+    val min = Calendar.getInstance()
+    min.set(Calendar.YEAR, 2020)
+    min.set(Calendar.MONTH, 1)
+    min.set(Calendar.DAY_OF_MONTH, 1)
+
+    val max = Calendar.getInstance()
+    max.set(Calendar.YEAR, 2022)
+    max.set(Calendar.MONTH, 11)
+    max.set(Calendar.DAY_OF_MONTH, 31)
 
     Column(modifier = Modifier.padding(10.dp)) {
         EmeraldTextField(
@@ -100,9 +124,22 @@ fun TextFieldScreenSample() {
             modifier = Modifier.padding(top = 10.dp)
         )
 
-        EmeraldDateTextField(onValueChange = {
+        EmeraldDateTextField(
+            state = textStateDate.value,
+            onValueChange = onValueChangedDate,
+            minDate = min.time,
+            maxDate = max.time,
+            label = "DatePicker",
+            onValueDateChange = { year, month, day ->
+                val calendar = Calendar.getInstance()
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.DAY_OF_MONTH, day)
 
-        }, label = "DatePicker")
+                val format = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+                onValueChangedDate(format.format(calendar.time))
+            }
+        )
     }
 }
 

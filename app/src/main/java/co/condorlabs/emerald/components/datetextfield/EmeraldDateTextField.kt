@@ -14,7 +14,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material.icons.filled.CalendarViewDay
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
@@ -34,10 +33,14 @@ import java.util.Date
 
 @Composable
 fun EmeraldDateTextField(
-    date: Date,
+    state: EmeraldTextFieldState,
     onValueChange: (String) -> Unit,
     label: String,
     modifier: Modifier = Modifier,
+    onValueDateChange: (Int, Int, Int) -> Unit,
+    date: Date = Date(),
+    minDate: Date? = null,
+    maxDate: Date? = null,
     placeholder: String = Empty,
     helperTextStart: String = Empty,
     helperTextEnd: String = Empty,
@@ -71,15 +74,26 @@ fun EmeraldDateTextField(
 
     mCalendar.time = date
 
-    // Declaring a string value to
-    // store date in string format
-    val mDate = remember { mutableStateOf(EmeraldTextFieldState()) }
-
     // Declaring DatePickerDialog and setting
     // initial values as current values (present year, month and day)
 
+    val dateDialog= DatePickerDialog(
+        mContext,
+        { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
+            onValueDateChange(mYear, mMonth, mDayOfMonth)
+        }, mYear, mMonth, mDay
+    )
+
+    if (minDate != null) {
+        dateDialog.datePicker.minDate = minDate.time
+    }
+
+    if (maxDate != null) {
+        dateDialog.datePicker.maxDate = maxDate.time
+    }
+
     EmeraldTextField(
-        state = mDate.value,
+        state = state,
         onValueChange = onValueChange,
         label = label,
         modifier = modifier,
@@ -97,16 +111,11 @@ fun EmeraldDateTextField(
         trailingIcon = {
             IconButton(
                 onClick = {
-                    DatePickerDialog(
-                        mContext,
-                        { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-                            mDate.value = mDate.value.copy(text = "$mDayOfMonth/${mMonth + 1}/$mYear")
-                        }, mYear, mMonth, mDay
-                    ).show()
+                    dateDialog.show()
                 },
                 modifier = modifier.testTag("ShowCalendar")
             ) {
-                Icon(imageVector = Icons.Filled.CalendarViewDay, "Show calendar")
+                Icon(imageVector = Icons.Filled.CalendarToday, "Show calendar")
             }
         },
         visualTransformation = VisualTransformation.None,
