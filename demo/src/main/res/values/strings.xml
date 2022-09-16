@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Emerald 2.0 Demo</string>
+    <string name="password">Password</string>
 </resources>

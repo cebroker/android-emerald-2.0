@@ -1,9 +1,8 @@
 package co.condorlabs.emerald.emeraldTextField.page
 
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
-import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldPassword
@@ -28,23 +27,23 @@ class EmeraldTextFieldPasswordPage(private val composeRule: ComposeContentTestRu
         }
     }
 
-    fun validIfShowPasswordLabelIsDisplayed() = apply {
+    fun validateIfShowPasswordLabelIsDisplayed() = apply {
         composeRule.onNodeWithText("Show password").assertIsDisplayed()
     }
 
-    fun validIfErrorPasswordLabelIsDisplayed() = apply {
+    fun validateIfErrorPasswordLabelIsDisplayed() = apply {
         composeRule.onNodeWithText("Error password").assertIsDisplayed()
     }
 
     fun onClickIconVisibilityOn() = apply {
-        composeRule.onNodeWithTag("PasswordIcon").performClick()
+        composeRule.onNodeWithContentDescription("Show password").performClick()
     }
 
-    fun validIfPasswordIsDisplayed() = apply {
+    fun validateIfPasswordIsDisplayed() = apply {
         composeRule.onNodeWithText("Password1234").assertIsDisplayed()
     }
 
-    fun validIfErrorPasswordIsDisplayed() = apply {
+    fun validateIfErrorPasswordIsDisplayed() = apply {
         composeRule.onNodeWithText("Password invalid").assertIsDisplayed()
     }
 }

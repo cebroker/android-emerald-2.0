@@ -17,12 +17,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import co.condorlabs.emerald.R
 import co.condorlabs.emerald.components.utils.Empty
 
 @Composable
@@ -70,13 +71,16 @@ fun EmeraldTextFieldPassword(
                 Icons.Filled.VisibilityOff
             }
 
-            val description = if (passwordVisible.value) "Hide password" else "Show password"
+            val description = if (passwordVisible.value) {
+                stringResource(id = R.string.hide_password)
+            } else {
+                stringResource(id = R.string.show_password)
+            }
 
             IconButton(
                 onClick = {
                     passwordVisible.value = !passwordVisible.value
-                },
-                modifier = modifier.testTag("PasswordIcon")
+                }
             ){
                 Icon(imageVector  = image, description)
             }
