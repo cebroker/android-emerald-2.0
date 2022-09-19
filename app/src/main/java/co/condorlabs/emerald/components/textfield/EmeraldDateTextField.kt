@@ -60,13 +60,13 @@ fun EmeraldDateTextField(
 
     // Initializing a Calendar
     val mCalendar = Calendar.getInstance()
+    mCalendar.time = date
 
     // Fetching current year, month and day
     mYear = mCalendar.get(Calendar.YEAR)
     mMonth = mCalendar.get(Calendar.MONTH)
     mDay = mCalendar.get(Calendar.DAY_OF_MONTH)
 
-    mCalendar.time = date
 
     // Declaring DatePickerDialog and setting
     // initial values as current values (present year, month and day)
