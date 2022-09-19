@@ -12,15 +12,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import co.condorlabs.emerald.components.datetextfield.EmeraldDateTextField
+import co.condorlabs.emerald.components.textfield.EmeraldDateTextField
 import co.condorlabs.demo.R
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldPassword
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 
 @Composable
@@ -76,9 +74,28 @@ fun TextFieldScreenSample() {
                 textStateError.value.copy(text = text, error = "This is an error message")
         }
     }
+    val MAX_DATE_LENGTH = 8
 
     val onValueChangedDate = { text: String ->
-        textStateDate.value = EmeraldTextFieldState(text = text)
+        if (text.matches("^\\d{0,$MAX_DATE_LENGTH}\$".toRegex())) {
+            if (text.length == MAX_DATE_LENGTH && text != textStateDate.value.text) {
+                val calendar = Calendar.getInstance()
+                calendar.set(Calendar.MONTH, text.substring(0, 2).toInt())
+                calendar.set(Calendar.DAY_OF_MONTH, text.substring(2, 4).toInt())
+                calendar.set(Calendar.YEAR, text.substring(4, 8).toInt())
+
+                val format = SimpleDateFormat("MMddyyyy", Locale.getDefault())
+                textStateDate.value = EmeraldTextFieldState(text = format.format(calendar.time))
+            } else {
+                textStateDate.value = EmeraldTextFieldState(text = text)
+            }
+        }
+
+        /*
+            if (text.length == MAX_DATE_LENGTH) {
+
+            }
+        }*/
     }
 
     val min = Calendar.getInstance()
@@ -139,7 +156,7 @@ fun TextFieldScreenSample() {
                 calendar.set(Calendar.MONTH, month)
                 calendar.set(Calendar.DAY_OF_MONTH, day)
 
-                val format = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+                val format = SimpleDateFormat("MMddyyyy", Locale.getDefault())
                 onValueChangedDate(format.format(calendar.time))
             }
         )

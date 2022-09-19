@@ -1,32 +1,26 @@
-package co.condorlabs.emerald.components.datetextfield
+package co.condorlabs.emerald.components.textfield
 
 import android.app.DatePickerDialog
 import android.widget.DatePicker
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.TextFieldColors
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CalendarToday
-import androidx.compose.material.icons.filled.CalendarViewDay
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.VisualTransformation
-import co.condorlabs.emerald.components.textfield.EmeraldTextField
-import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
-import co.condorlabs.emerald.components.textfield.MaxLinesTextFieldDefault
-import co.condorlabs.emerald.components.textfield.emeraldTextFieldColors
+import co.condorlabs.emerald.R
 import co.condorlabs.emerald.components.utils.Empty
 import java.util.Calendar
 import java.util.Date
@@ -79,8 +73,8 @@ fun EmeraldDateTextField(
 
     val dateDialog= DatePickerDialog(
         mContext,
-        { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-            onValueDateChange(mYear, mMonth, mDayOfMonth)
+        { _: DatePicker, year: Int, month: Int, day: Int ->
+            onValueDateChange(year, month, day)
         }, mYear, mMonth, mDay
     )
 
@@ -112,16 +106,15 @@ fun EmeraldDateTextField(
             IconButton(
                 onClick = {
                     dateDialog.show()
-                },
-                modifier = modifier.testTag("ShowCalendar")
+                }
             ) {
-                Icon(imageVector = Icons.Filled.CalendarToday, "Show calendar")
+                Image(painter = painterResource(id = R.drawable.ic_date),
+                    contentDescription = stringResource(id = R.string.show_calendar))
             }
         },
-        visualTransformation = VisualTransformation.None,
+        visualTransformation = MaskVisualTransformation("##/##/####"),
         interactionSource = interactionSource,
         shape = shape,
         colors = colors,
     )
-
 }
