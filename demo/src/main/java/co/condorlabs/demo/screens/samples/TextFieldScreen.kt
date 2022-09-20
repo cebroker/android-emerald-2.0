@@ -74,13 +74,12 @@ fun TextFieldScreenSample() {
                 textStateError.value.copy(text = text, error = "This is an error message")
         }
     }
-    val MAX_DATE_LENGTH = 8
 
     val onValueChangedDate = { text: String ->
         if (text.matches("^\\d{0,$MAX_DATE_LENGTH}\$".toRegex())) {
             if (text.length == MAX_DATE_LENGTH && text != textStateDate.value.text) {
                 val calendar = Calendar.getInstance()
-                calendar.set(Calendar.MONTH, text.substring(0, 2).toInt())
+                calendar.set(Calendar.MONTH, text.substring(0, 2).toInt() - 1)
                 calendar.set(Calendar.DAY_OF_MONTH, text.substring(2, 4).toInt())
                 calendar.set(Calendar.YEAR, text.substring(4, 8).toInt())
 
@@ -90,12 +89,6 @@ fun TextFieldScreenSample() {
                 textStateDate.value = EmeraldTextFieldState(text = text)
             }
         }
-
-        /*
-            if (text.length == MAX_DATE_LENGTH) {
-
-            }
-        }*/
     }
 
     val min = Calendar.getInstance()
@@ -153,7 +146,7 @@ fun TextFieldScreenSample() {
             onValueDateChange = { year, month, day ->
                 val calendar = Calendar.getInstance()
                 calendar.set(Calendar.YEAR, year)
-                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.MONTH, month - 1)
                 calendar.set(Calendar.DAY_OF_MONTH, day)
 
                 val format = SimpleDateFormat("MMddyyyy", Locale.getDefault())
@@ -164,3 +157,4 @@ fun TextFieldScreenSample() {
 }
 
 private fun String.validateEmail() : Boolean = Patterns.EMAIL_ADDRESS.matcher(this).matches()
+private const val MAX_DATE_LENGTH = 8
