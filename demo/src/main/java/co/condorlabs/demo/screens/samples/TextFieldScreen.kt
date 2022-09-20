@@ -101,19 +101,19 @@ fun TextFieldScreenSample() {
     max.set(Calendar.MONTH, 11)
     max.set(Calendar.DAY_OF_MONTH, 31)
 
-    Column(modifier = Modifier.padding(10.dp)) {
+    Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_all_text_field_screen))) {
         EmeraldTextField(
             state = textStateEmpty.value,
             onValueChange = onValueChangedEmpty,
             label = "Normal",
-            modifier = Modifier.padding(top = 10.dp)
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
         )
         EmeraldTextField(
             state = textStateCorrect.value,
             onValueChange = onValueChangedCorrect,
             label = "With placeholder",
             placeholder = "With placeholder",
-            modifier = Modifier.padding(top = 10.dp)
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
         )
         EmeraldTextField(
             state = textStateEmail.value,
@@ -121,20 +121,20 @@ fun TextFieldScreenSample() {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             label = "Email",
             placeholder = "With email",
-            modifier = Modifier.padding(top = 10.dp)
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
         )
         EmeraldTextField(
             state = textStateError.value,
             onValueChange = onValueChangedError,
             label = "With error message",
             helperTextStart = "With max length",
-            modifier = Modifier.padding(top = 10.dp)
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
         )
         EmeraldTextFieldPassword(
             state = textStatePassword.value,
             onValueChange = onValueChangedPassword,
             label = stringResource(id = R.string.password),
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.paddig_top_text_field))
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
         )
 
         EmeraldDateTextField(

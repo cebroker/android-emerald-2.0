@@ -49,27 +49,14 @@ fun EmeraldDateTextField(
     shape: Shape = MaterialTheme.shapes.small,
     colors: TextFieldColors = emeraldTextFieldColors()
 ) {
-    // Fetching the Local Context
     val mContext = LocalContext.current
 
-    // Declaring integer values
-    // for year, month and day
-    val mYear: Int
-    val mMonth: Int
-    val mDay: Int
-
-    // Initializing a Calendar
     val mCalendar = Calendar.getInstance()
     mCalendar.time = date
 
-    // Fetching current year, month and day
-    mYear = mCalendar.get(Calendar.YEAR)
-    mMonth = mCalendar.get(Calendar.MONTH)
-    mDay = mCalendar.get(Calendar.DAY_OF_MONTH)
-
-
-    // Declaring DatePickerDialog and setting
-    // initial values as current values (present year, month and day)
+    val mYear = mCalendar.get(Calendar.YEAR)
+    val mMonth = mCalendar.get(Calendar.MONTH)
+    val mDay = mCalendar.get(Calendar.DAY_OF_MONTH)
 
     val dateDialog= DatePickerDialog(
         mContext,
