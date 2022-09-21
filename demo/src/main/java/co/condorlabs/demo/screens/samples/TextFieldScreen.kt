@@ -14,6 +14,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.textfield.EmeraldDateTextField
 import co.condorlabs.demo.R
+import co.condorlabs.emerald.components.textfield.EmeraldPhoneTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldPassword
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
@@ -43,6 +44,10 @@ fun TextFieldScreenSample() {
         mutableStateOf(EmeraldTextFieldState())
     }
 
+    val textStatePhone = remember {
+        mutableStateOf(EmeraldTextFieldState())
+    }
+
     val textStateError = remember {
         mutableStateOf(EmeraldTextFieldState())
     }
@@ -57,6 +62,12 @@ fun TextFieldScreenSample() {
 
     val onValueChangedPassword = { text: String ->
         textStatePassword.value = textStatePassword.value.copy(text = text)
+    }
+
+    val onValueChangedPhone = { text: String ->
+        if (text.matches("^\\d{0,$MAX_PHONE_LENGTH}\$".toRegex())) {
+            textStatePhone.value = textStatePhone.value.copy(text = text)
+        }
     }
 
     val onValueChangedEmail = { text: String ->
@@ -123,6 +134,13 @@ fun TextFieldScreenSample() {
             placeholder = "With email",
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
         )
+        EmeraldPhoneTextField(
+            state = textStatePhone.value,
+            onValueChange = onValueChangedPhone,
+            label = "Phone number",
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
+        )
+
         EmeraldTextField(
             state = textStateError.value,
             onValueChange = onValueChangedError,
@@ -158,3 +176,4 @@ fun TextFieldScreenSample() {
 
 private fun String.validateEmail() : Boolean = Patterns.EMAIL_ADDRESS.matcher(this).matches()
 private const val MAX_DATE_LENGTH = 8
+private const val MAX_PHONE_LENGTH = 10
