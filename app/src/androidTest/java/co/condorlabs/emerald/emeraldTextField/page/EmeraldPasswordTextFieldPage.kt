@@ -5,12 +5,12 @@ import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import co.condorlabs.emerald.components.textfield.EmeraldTextFieldPassword
+import co.condorlabs.emerald.components.textfield.EmeraldPasswordTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
 import co.condorlabs.emerald.theme.EmeraldTheme
 import co.condorlabs.emerald.uiteststubs.base.Page
 
-class EmeraldTextFieldPasswordPage(private val composeRule: ComposeContentTestRule) : Page() {
+class EmeraldPasswordTextFieldPage(private val composeRule: ComposeContentTestRule) : Page() {
 
     fun launchView(
         state: EmeraldTextFieldState,
@@ -18,7 +18,7 @@ class EmeraldTextFieldPasswordPage(private val composeRule: ComposeContentTestRu
     ) = apply {
         composeRule.setContent {
             EmeraldTheme {
-                EmeraldTextFieldPassword(
+                EmeraldPasswordTextField(
                     state = state,
                     onValueChange = {},
                     label = label

@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -27,72 +28,57 @@ import co.condorlabs.emerald.R
 import co.condorlabs.emerald.components.utils.Empty
 
 @Composable
-fun EmeraldTextFieldPassword(
-    state: EmeraldTextFieldState,
-    onValueChange: (String) -> Unit,
-    label: String,
+fun EmeraldPasswordTextField(
     modifier: Modifier = Modifier,
-    placeholder: String = Empty,
-    helperTextStart: String = Empty,
-    helperTextEnd: String = Empty,
+    label: String,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     singleLine: Boolean = true,
+    placeholder: String = Empty,
+    state: EmeraldTextFieldState,
+    helperTextEnd: String = Empty,
+    onValueChange: (String) -> Unit,
+    helperTextStart: String = Empty,
     maxLines: Int = MaxLinesTextFieldDefault,
+    shape: Shape = MaterialTheme.shapes.small,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    colors: TextFieldColors = emeraldTextFieldColors(),
     keyboardActions: KeyboardActions = KeyboardActions(),
     textStyle: TextStyle = LocalTextStyle.current.copy(fontWeight = FontWeight.Normal),
-    leadingIcon: @Composable (() -> Unit)? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    shape: Shape = MaterialTheme.shapes.small,
-    colors: TextFieldColors = emeraldTextFieldColors(),
 ) {
     val passwordVisible = rememberSaveable { mutableStateOf(false) }
-
     EmeraldTextField(
         state = state,
-        onValueChange = onValueChange,
         label = label,
-        modifier = modifier,
-        placeholder = placeholder,
-        helperTextStart = helperTextStart,
-        helperTextEnd = helperTextEnd,
+        shape = shape,
+        colors = colors,
         enabled = enabled,
         readOnly = readOnly,
-        singleLine = singleLine,
+        modifier = modifier,
         maxLines = maxLines,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        keyboardActions = keyboardActions,
         textStyle = textStyle,
+        singleLine = singleLine,
+        placeholder = placeholder,
         leadingIcon = leadingIcon,
+        onValueChange = onValueChange,
+        helperTextEnd = helperTextEnd,
+        helperTextStart = helperTextStart,
+        keyboardActions = keyboardActions,
+        interactionSource = interactionSource,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
         trailingIcon = {
-            val image = if (passwordVisible.value) {
-                Icons.Filled.Visibility
-            } else {
-                Icons.Filled.VisibilityOff
-            }
-
-            val description = if (passwordVisible.value) {
-                stringResource(id = R.string.hide_password)
-            } else {
-                stringResource(id = R.string.show_password)
-            }
-
             IconButton(
                 onClick = {
                     passwordVisible.value = !passwordVisible.value
                 }
-            ){
-                Icon(imageVector  = image, description)
+            ) {
+                Icon(
+                    imageVector = if (passwordVisible.value) Icons.Filled.Visibility else Icons.Filled.VisibilityOff,
+                    contentDescription = if(passwordVisible.value) stringResource(id = R.string.hide_password) else stringResource(id = R.string.show_password)
+                )
             }
-
-        },
-        visualTransformation = if (passwordVisible.value) {
-            VisualTransformation.None
-        } else {
-            PasswordVisualTransformation()
-        },
-        interactionSource = interactionSource,
-        shape = shape,
-        colors = colors,
+        }
     )
 }

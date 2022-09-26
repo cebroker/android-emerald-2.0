@@ -11,12 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.textfield.EmeraldDateTextField
 import co.condorlabs.demo.R
 import co.condorlabs.emerald.components.textfield.EmeraldPhoneTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
-import co.condorlabs.emerald.components.textfield.EmeraldTextFieldPassword
+import co.condorlabs.emerald.components.textfield.EmeraldPasswordTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -148,7 +147,7 @@ fun TextFieldScreenSample() {
             helperTextStart = "With max length",
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
         )
-        EmeraldTextFieldPassword(
+        EmeraldPasswordTextField(
             state = textStatePassword.value,
             onValueChange = onValueChangedPassword,
             label = stringResource(id = R.string.password),
