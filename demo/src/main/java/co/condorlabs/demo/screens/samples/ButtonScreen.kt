@@ -125,7 +125,7 @@ fun ButtonScreenSample() {
             onConfirmButton = { month, year ->
                 isShowDialog.value = false
             },
-            onDismissRequest = {
+            onDismissButton = {
                 isShowDialog.value = false
             }
         )

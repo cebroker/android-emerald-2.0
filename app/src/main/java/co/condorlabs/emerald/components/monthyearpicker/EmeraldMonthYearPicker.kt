@@ -22,6 +22,7 @@ import co.condorlabs.emerald.components.utils.Empty
 import co.condorlabs.emerald.theme.EmeraldColors
 import com.chargemap.compose.numberpicker.ListItemPicker
 import com.chargemap.compose.numberpicker.NumberPicker
+import java.util.Calendar
 
 @Composable
 fun EmeraldMonthYearPicker(
@@ -29,19 +30,21 @@ fun EmeraldMonthYearPicker(
     isShowDialog: Boolean = false,
     minYear: Int = integerResource(id = R.integer.min_year),
     maxYear: Int = integerResource(id = R.integer.max_year),
+    monthSelected: Int = Calendar.getInstance().get(Calendar.MONTH),
+    yearSelected: Int = Calendar.getInstance().get(Calendar.YEAR),
     label: String = Empty,
     confirmText: String = stringResource(id = R.string.ok),
     dismissText: String = stringResource(id = R.string.cancel),
-    onDismissRequest: () -> Unit,
+    onDismissButton: () -> Unit,
     onConfirmButton: (Int, Int) -> Unit,
 ) {
 
     val months = stringArrayResource(id = R.array.months)
-    var state by remember { mutableStateOf(months[0]) }
-    var pickerValue by remember { mutableStateOf(2022) }
+    var state by remember { mutableStateOf(months[monthSelected]) }
+    var pickerValue by remember { mutableStateOf(yearSelected) }
 
     if (isShowDialog) {
-        AlertDialog(onDismissRequest = onDismissRequest,
+        AlertDialog(onDismissRequest = onDismissButton,
             title = { Text(text = label, fontWeight = FontWeight.Light) },
             text = {
                 Row(modifier = modifier.fillMaxWidth()) {
@@ -81,7 +84,7 @@ fun EmeraldMonthYearPicker(
             },
             dismissButton = {
                 TextButton(onClick = {
-                    onDismissRequest()
+                    onDismissButton()
                 }) {
                     Text(
                         text = dismissText,
