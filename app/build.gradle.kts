@@ -64,4 +64,6 @@ dependencies {
     androidTestImplementation(Dependencies.Test.testCoreKtx)
 
     implementation(Dependencies.kotlinReflect)
+
+    implementation("com.chargemap.compose:numberpicker:1.0.3")
 }

@@ -13,11 +13,14 @@ import androidx.compose.ui.unit.dp
 import co.condorlabs.emerald.components.button.EmeraldButton
 import co.condorlabs.emerald.components.button.EmeraldButtonState
 import co.condorlabs.emerald.components.button.EmeraldButtonStyle
+import co.condorlabs.emerald.components.monthyearpicker.EmeraldMonthYearPicker
 
 @Composable
 fun ButtonScreenSample() {
     Column(modifier = Modifier.padding(10.dp)) {
         val currentButtonState: MutableState<EmeraldButtonState> = remember { mutableStateOf(EmeraldButtonState.Normal) }
+        val isShowDialog = remember { mutableStateOf(false) }
+
         EmeraldButton(
             text = "Primary Button",
             modifier = Modifier
@@ -105,6 +108,27 @@ fun ButtonScreenSample() {
                 .height(40.dp)
                 .fillMaxWidth()
         ) {}
+
+        EmeraldButton(
+            text = "Open month year dialog",
+            emeraldButtonStyle = EmeraldButtonStyle.EmeraldPrimaryButton,
+            modifier = Modifier
+                .padding(bottom = 10.dp)
+                .height(40.dp)
+                .fillMaxWidth()
+        ) {
+            isShowDialog.value = true
+        }
+
+        EmeraldMonthYearPicker(
+            isShowDialog = isShowDialog.value,
+            onConfirmButton = { month, year ->
+                isShowDialog.value = false
+            },
+            onDismissRequest = {
+                isShowDialog.value = false
+            }
+        )
     }
 
 }
