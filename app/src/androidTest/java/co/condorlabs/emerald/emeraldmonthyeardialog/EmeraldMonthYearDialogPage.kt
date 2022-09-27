@@ -12,7 +12,7 @@ import java.util.Calendar
 class EmeraldMonthYearDialogPage(private val composeRule: ComposeContentTestRule) : Page() {
 
     fun launchView(
-        isShowDialog : Boolean = true,
+        showDialog : Boolean = true,
         monthSelected: Int = Calendar.getInstance().get(Calendar.MONTH),
         yearSelected: Int = Calendar.getInstance().get(Calendar.YEAR),
         onDismissButton: () -> Unit = {},
@@ -22,7 +22,7 @@ class EmeraldMonthYearDialogPage(private val composeRule: ComposeContentTestRule
             EmeraldTheme {
                 EmeraldMonthYearPicker(
                     label = "Month year",
-                    isShowDialog = isShowDialog,
+                    showDialog = showDialog,
                     monthSelected = monthSelected,
                     yearSelected = yearSelected,
                     onDismissButton = onDismissButton,

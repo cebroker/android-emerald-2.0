@@ -27,7 +27,7 @@ import java.util.Calendar
 @Composable
 fun EmeraldMonthYearPicker(
     modifier: Modifier = Modifier,
-    isShowDialog: Boolean = false,
+    showDialog: Boolean = false,
     minYear: Int = integerResource(id = R.integer.min_year),
     maxYear: Int = integerResource(id = R.integer.max_year),
     monthSelected: Int = Calendar.getInstance().get(Calendar.MONTH),
@@ -43,7 +43,7 @@ fun EmeraldMonthYearPicker(
     var state by remember { mutableStateOf(months[monthSelected]) }
     var pickerValue by remember { mutableStateOf(yearSelected) }
 
-    if (isShowDialog) {
+    if (showDialog) {
         AlertDialog(onDismissRequest = onDismissButton,
             title = { Text(text = label, fontWeight = FontWeight.Light) },
             text = {

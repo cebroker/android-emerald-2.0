@@ -121,7 +121,7 @@ fun ButtonScreenSample() {
         }
 
         EmeraldMonthYearPicker(
-            isShowDialog = isShowDialog.value,
+            showDialog = isShowDialog.value,
             onConfirmButton = { month, year ->
                 isShowDialog.value = false
             },
