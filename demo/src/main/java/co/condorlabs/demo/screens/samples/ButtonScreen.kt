@@ -19,7 +19,7 @@ import co.condorlabs.emerald.components.monthyearpicker.EmeraldMonthYearPicker
 fun ButtonScreenSample() {
     Column(modifier = Modifier.padding(10.dp)) {
         val currentButtonState: MutableState<EmeraldButtonState> = remember { mutableStateOf(EmeraldButtonState.Normal) }
-        val isShowDialog = remember { mutableStateOf(false) }
+        val showDialog = remember { mutableStateOf(false) }
 
         EmeraldButton(
             text = "Primary Button",
@@ -117,16 +117,16 @@ fun ButtonScreenSample() {
                 .height(40.dp)
                 .fillMaxWidth()
         ) {
-            isShowDialog.value = true
+            showDialog.value = true
         }
 
         EmeraldMonthYearPicker(
-            showDialog = isShowDialog.value,
-            onConfirmButton = { month, year ->
-                isShowDialog.value = false
+            showDialog = showDialog.value,
+            onConfirmButton = { _, _ ->
+                showDialog.value = false
             },
             onDismissButton = {
-                isShowDialog.value = false
+                showDialog.value = false
             }
         )
     }
