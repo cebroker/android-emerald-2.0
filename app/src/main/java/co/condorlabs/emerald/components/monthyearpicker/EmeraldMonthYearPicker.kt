@@ -36,7 +36,7 @@ fun EmeraldMonthYearPicker(
     confirmText: String = stringResource(id = R.string.ok),
     dismissText: String = stringResource(id = R.string.cancel),
     onDismissButton: () -> Unit,
-    onConfirmButton: (Int, Int) -> Unit,
+    onConfirmButton: (Int, Int) -> Unit
 ) {
 
     val months = stringArrayResource(id = R.array.months)

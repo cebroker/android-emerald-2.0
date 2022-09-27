@@ -16,7 +16,7 @@ class EmeraldMonthYearDialogPage(private val composeRule: ComposeContentTestRule
         monthSelected: Int = Calendar.getInstance().get(Calendar.MONTH),
         yearSelected: Int = Calendar.getInstance().get(Calendar.YEAR),
         onDismissButton: () -> Unit = {},
-        onConfirmButton: (Int, Int) -> Unit = { _, _ ->},
+        onConfirmButton: (Int, Int) -> Unit = { _, _ ->}
     ) = apply {
         composeRule.setContent {
             EmeraldTheme {
@@ -26,7 +26,7 @@ class EmeraldMonthYearDialogPage(private val composeRule: ComposeContentTestRule
                     monthSelected = monthSelected,
                     yearSelected = yearSelected,
                     onDismissButton = onDismissButton,
-                    onConfirmButton = onConfirmButton,
+                    onConfirmButton = onConfirmButton
                 )
             }
         }
