@@ -13,12 +13,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import co.condorlabs.emerald.components.textfield.EmeraldDateTextField
 import co.condorlabs.demo.R
+import co.condorlabs.emerald.components.textfield.EmeraldMonthYearTextField
 import co.condorlabs.emerald.components.textfield.EmeraldPhoneTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
 import co.condorlabs.emerald.components.textfield.EmeraldPasswordTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 @Composable
@@ -36,6 +38,10 @@ fun TextFieldScreenSample() {
     }
 
     val textStateDate = remember {
+        mutableStateOf(EmeraldTextFieldState())
+    }
+
+    val textStateMonthYear = remember {
         mutableStateOf(EmeraldTextFieldState())
     }
 
@@ -101,6 +107,21 @@ fun TextFieldScreenSample() {
         }
     }
 
+    val onValueChangedMonthYear = { text: String ->
+        if (text.matches("^\\d{0,$MAX_MONTH_YEAR_LENGTH}\$".toRegex())) {
+            if (text.length == MAX_MONTH_YEAR_LENGTH && text != textStateMonthYear.value.text) {
+                val calendar = Calendar.getInstance()
+                calendar.set(Calendar.MONTH, text.substring(0, 2).toInt() - 1)
+                calendar.set(Calendar.YEAR, text.substring(2, 6).toInt())
+
+                val format = SimpleDateFormat("MMyyyy", Locale.getDefault())
+                textStateMonthYear.value = EmeraldTextFieldState(text = format.format(calendar.time))
+            } else {
+                textStateMonthYear.value = EmeraldTextFieldState(text = text)
+            }
+        }
+     }
+
     val min = Calendar.getInstance()
     min.set(Calendar.YEAR, 2020)
     min.set(Calendar.MONTH, 1)
@@ -154,6 +175,22 @@ fun TextFieldScreenSample() {
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
         )
 
+        EmeraldMonthYearTextField(
+            state = textStateMonthYear.value,
+            onValueChange = onValueChangedMonthYear,
+            label = stringResource(id = R.string.month_year_picker),
+            date = Date(),
+            minYear = min.get(Calendar.YEAR),
+            maxYear = max.get(Calendar.YEAR),
+            onValueDateChange = { month, year ->
+                val calendar = Calendar.getInstance()
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month - 1)
+
+                val format = SimpleDateFormat("MMyyyy", Locale.getDefault())
+                onValueChangedMonthYear(format.format(calendar.time))
+            })
+
         EmeraldDateTextField(
             state = textStateDate.value,
             onValueChange = onValueChangedDate,
@@ -175,4 +212,5 @@ fun TextFieldScreenSample() {
 
 private fun String.validateEmail() : Boolean = Patterns.EMAIL_ADDRESS.matcher(this).matches()
 private const val MAX_DATE_LENGTH = 8
+private const val MAX_MONTH_YEAR_LENGTH = 6
 private const val MAX_PHONE_LENGTH = 10
