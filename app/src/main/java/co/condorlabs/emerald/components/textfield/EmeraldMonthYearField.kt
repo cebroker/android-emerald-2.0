@@ -30,6 +30,7 @@ fun EmeraldMonthYearTextField(
     state: EmeraldTextFieldState,
     onValueChange: (String) -> Unit,
     label: String,
+    dialogLabel: String = Empty,
     modifier: Modifier = Modifier,
     onValueDateChange: (Int, Int) -> Unit,
     date: Date = Date(),
@@ -61,6 +62,7 @@ fun EmeraldMonthYearTextField(
         showDialog = showDialog.value,
         minYear = minYear,
         maxYear = maxYear,
+        label = dialogLabel,
         monthSelected = mMonth,
         yearSelected = mYear,
         onConfirmButton = { year, month ->
