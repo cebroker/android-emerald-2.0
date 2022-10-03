@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Emerald 2.0 Demo</string>
     <string name="password">Password</string>
+    <string name="month_year_picker">Month year picker</string>
 </resources>
