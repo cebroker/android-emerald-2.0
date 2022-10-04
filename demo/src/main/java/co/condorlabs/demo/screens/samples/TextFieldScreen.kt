@@ -10,14 +10,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
-import co.condorlabs.emerald.components.textfield.EmeraldDateTextField
+import androidx.compose.ui.text.input.TextFieldValue
 import co.condorlabs.demo.R
 import co.condorlabs.emerald.components.textfield.EmeraldMonthYearTextField
+import co.condorlabs.emerald.components.textfield.EmeraldDateTextField
+import co.condorlabs.emerald.components.textfield.EmeraldPasswordTextField
 import co.condorlabs.emerald.components.textfield.EmeraldPhoneTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextField
-import co.condorlabs.emerald.components.textfield.EmeraldPasswordTextField
 import co.condorlabs.emerald.components.textfield.EmeraldTextFieldState
+import co.condorlabs.emerald.components.textfield.EmeraldTextFieldValueState
+import java.math.BigDecimal
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -49,6 +54,10 @@ fun TextFieldScreenSample() {
         mutableStateOf(EmeraldTextFieldState())
     }
 
+    val textStateCurrency = remember {
+        mutableStateOf(EmeraldTextFieldValueState())
+    }
+
     val textStatePhone = remember {
         mutableStateOf(EmeraldTextFieldState())
     }
@@ -72,6 +81,21 @@ fun TextFieldScreenSample() {
     val onValueChangedPhone = { text: String ->
         if (text.matches("^\\d{0,$MAX_PHONE_LENGTH}\$".toRegex())) {
             textStatePhone.value = textStatePhone.value.copy(text = text)
+        }
+    }
+
+    val onValueChangeCurrency = { textFieldValue: TextFieldValue ->
+        val numberFormat = NumberFormat.getCurrencyInstance()
+        textFieldValue.text.replace("""[$,.]""".toRegex(), "").let {
+            with(textStateCurrency.value) {
+                val newText = if (!isAllowedAmount(it)) numberFormat.format((maxAmount.toDouble() / ONE_HUNDRED)) else numberFormat.format((it.toDouble() / ONE_HUNDRED))
+                textStateCurrency.value = this.copy(
+                    textFieldValue = this.textFieldValue.copy(
+                        text = newText,
+                        selection = TextRange(newText.length, newText.length)
+                    )
+                )
+            }
         }
     }
 
@@ -160,7 +184,14 @@ fun TextFieldScreenSample() {
             label = "Phone number",
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
         )
-
+        EmeraldTextField(
+            label = "Currency",
+            placeholder = "With currency",
+            state = textStateCurrency.value,
+            onValueChange = { onValueChangeCurrency(it) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
+        )
         EmeraldTextField(
             state = textStateError.value,
             onValueChange = onValueChangedError,
@@ -174,7 +205,6 @@ fun TextFieldScreenSample() {
             label = stringResource(id = R.string.password),
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_top_text_field))
         )
-
         EmeraldMonthYearTextField(
             state = textStateMonthYear.value,
             onValueChange = onValueChangedMonthYear,
@@ -190,7 +220,6 @@ fun TextFieldScreenSample() {
                 val format = SimpleDateFormat("MMyyyy", Locale.getDefault())
                 onValueChangedMonthYear(format.format(calendar.time))
             })
-
         EmeraldDateTextField(
             state = textStateDate.value,
             onValueChange = onValueChangedDate,
@@ -210,7 +239,24 @@ fun TextFieldScreenSample() {
     }
 }
 
+fun BigDecimal.lessThan(value: BigDecimal): Boolean {
+    return compareTo(value) == -1
+}
+
+fun BigDecimal.equalThan(value: BigDecimal): Boolean {
+    return compareTo(value) == 0
+}
+
+private fun isAllowedAmount(currentAmount: String): Boolean {
+    return currentAmount.toDouble().toBigDecimal().let {
+        it.lessThan(maxAmount) || it.equalThan(maxAmount)
+    }
+}
+
 private fun String.validateEmail() : Boolean = Patterns.EMAIL_ADDRESS.matcher(this).matches()
+private const val ONE_HUNDRED = 100
 private const val MAX_DATE_LENGTH = 8
-private const val MAX_MONTH_YEAR_LENGTH = 6
 private const val MAX_PHONE_LENGTH = 10
+private const val MAX_MONTH_YEAR_LENGTH = 6
+private const val MONEY_MAX_AMOUNT = 100000000000000
+private val maxAmount = MONEY_MAX_AMOUNT.toBigDecimal()
