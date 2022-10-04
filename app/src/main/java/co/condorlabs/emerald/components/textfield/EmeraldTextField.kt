@@ -21,10 +21,64 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import co.condorlabs.emerald.components.utils.Empty
 import co.condorlabs.emerald.theme.EmeraldColors
 import co.condorlabs.emerald.theme.EmeraldDimens
+
+@Composable
+fun EmeraldTextField(
+    modifier: Modifier = Modifier,
+    label: String,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    singleLine: Boolean = true,
+    placeholder: String = Empty,
+    helperTextEnd: String = Empty,
+    helperTextStart: String = Empty,
+    state: EmeraldTextFieldValueState,
+    onValueChange: (TextFieldValue) -> Unit,
+    maxLines: Int = MaxLinesTextFieldDefault,
+    shape: Shape = MaterialTheme.shapes.small,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    colors: TextFieldColors = emeraldTextFieldColors(),
+    keyboardActions: KeyboardActions = KeyboardActions(),
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    textStyle: TextStyle = LocalTextStyle.current.copy(fontWeight = FontWeight.Normal),
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+) {
+    Column {
+        OutlinedTextField(
+            shape = shape,
+            colors = colors,
+            enabled = enabled,
+            readOnly = readOnly,
+            maxLines = maxLines,
+            textStyle = textStyle,
+            singleLine = singleLine,
+            leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
+            value = state.textFieldValue,
+            isError = state.error != null,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            modifier = modifier.fillMaxWidth(),
+            interactionSource = interactionSource,
+            onValueChange = { onValueChange(it) },
+            placeholder = { Text(text = placeholder) },
+            visualTransformation = visualTransformation,
+            label = { Text(text = label, fontWeight = FontWeight.Light) },
+        )
+        TextFieldError(
+            error = state.error,
+            helperTextEnd = helperTextEnd,
+            helperTextStart = helperTextStart
+        )
+    }
+}
 
 @Composable
 fun EmeraldTextField(
@@ -71,15 +125,11 @@ fun EmeraldTextField(
             interactionSource = interactionSource,
             colors = colors
         )
-        Box(modifier = Modifier.fillMaxWidth()) {
-            if ((state.error != null) or helperTextStart.isNotBlank()) {
-                TextFieldHelperText(alignment = Alignment.TopStart, text = helperTextStart, error = state.error)
-            }
-            if (helperTextEnd.isNotBlank()) {
-                TextFieldHelperText(alignment = Alignment.TopEnd, text = helperTextStart, error = state.error)
-            }
-        }
-
+        TextFieldError(
+            error = state.error,
+            helperTextEnd = helperTextEnd,
+            helperTextStart = helperTextStart
+        )
     }
 }
 
@@ -98,6 +148,22 @@ private fun BoxScope.TextFieldHelperText(
             color = getColorByErrorState(error)
         )
     )
+}
+
+@Composable
+fun TextFieldError(
+    error: String?,
+    helperTextEnd: String = Empty,
+    helperTextStart: String = Empty
+) {
+    Box(modifier = Modifier.fillMaxWidth()) {
+        if ((error != null) or helperTextStart.isNotBlank()) {
+            TextFieldHelperText(alignment = Alignment.TopStart, text = helperTextStart, error = error)
+        }
+        if (helperTextEnd.isNotBlank()) {
+            TextFieldHelperText(alignment = Alignment.TopEnd, text = helperTextStart, error = error)
+        }
+    }
 }
 
 private fun getColorByErrorState(error: String?): Color {
